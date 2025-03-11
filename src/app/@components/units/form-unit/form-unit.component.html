@@ -1,0 +1,57 @@
+<dx-popup
+  [width]="widthsSpan.width"
+  height="auto"
+  title="Unidad de Medida"
+  [showTitle]="true"
+  position="center"
+  [dragEnabled]="true"
+  [showCloseButton]="true"
+  [closeOnOutsideClick]="false"
+  [(visible)]="popupVisible"
+>
+  <div id="popup">
+    <dx-form [formData]="formUnit" labelLocation="top">
+      <dxi-item
+        dataField="name"
+        [label]="{ text: 'Unidad de Medida' }"
+        [editorOptions]="{ maxLength: 50 }"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="* Campo Requerido"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        dataField="symbol"
+        [label]="{ text: 'Simbolo' }"
+        [editorOptions]="{ maxLength: 50 }"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="* Campo requerido"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        editorType="dxNumberBox"
+        dataField="value"
+        [label]="{ text: 'Valor' }"
+        [editorOptions]="{ maxLength: 50 }"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="* Campo requerido"
+        ></dxi-validation-rule>
+      </dxi-item>
+    </dx-form>
+    <div class="card-flex-box">
+      <dx-button
+        style="margin: 0 0 0 2rem"
+        type="success"
+        [text]="formUnit.id ? 'Actualizar' : 'Guardar'"
+        (onClick)="save()"
+      ></dx-button>
+    </div>
+  </div>
+</dx-popup>

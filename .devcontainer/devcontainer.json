@@ -1,0 +1,14 @@
+{
+  "name": "config",
+  "dockerComposeFile": "../docker-compose.yaml",
+  "service": "angular",  // El nombre del servicio definido en docker-compose.yml
+  //"workspaceFolder": "/workspace",  // Ruta dentro del contenedor donde se montará tu código
+  //"postCreateCommand": "npm install",
+  "forwardPorts": [4201],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+      ]
+    }
+  }
+}

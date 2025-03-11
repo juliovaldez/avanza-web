@@ -1,0 +1,66 @@
+<dx-popup
+  [width]="widthsSpan.width"
+  height="auto"
+  maxHeight="98%"
+  title="Documentos"
+  [showTitle]="true"
+  position="center"
+  [dragEnabled]="true"
+  [showCloseButton]="true"
+  [closeOnOutsideClick]="false"
+  [visible]="true"
+  *ngIf="showOnPopup; else accordion"
+>
+  <ng-container *ngTemplateOutlet="datagrid"></ng-container>
+</dx-popup>
+
+<ng-template #accordion>
+  <dx-accordion
+    #accordion
+    [dataSource]="['Documentos']"
+    [collapsible]="true"
+    [multiple]="false"
+    [animationDuration]="300"
+    [selectedItems]="['Documentos']"
+  >
+    <div *dxTemplate="let tab of 'title'">
+      <div class="header">{{ tab }}</div>
+    </div>
+    <div *dxTemplate="let tab of 'item'">
+      <ng-container *ngTemplateOutlet="datagrid"></ng-container>
+    </div>
+  </dx-accordion>
+</ng-template>
+<ng-template #datagrid>
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="dataGridConf.dataSource"
+    [columns]="dataGridConf.columns"
+    [cacheEnabled]="false"
+    [showBorders]="true"
+    [remoteOperations]="dataGridConf.remoteOperations"
+    [allowColumnReordering]="true"
+    [showBorders]="true"
+    [allowColumnResizing]="true"
+    [columnResizingMode]="'widget'"
+    [columnMinWidth]="50"
+    [columnAutoWidth]="true"
+    [paging]="dataGridConf.paging"
+    [pager]="dataGridConf.pager"
+    [searchPanel]="dataGridConf.searchPanel"
+    [headerFilter]="dataGridConf.headerFilter"
+    [filterPanel]="dataGridConf.filterPanel"
+    [filterRow]="dataGridConf.filterRow"
+    [editing]="dataGridConf.editing"
+    [selection]="dataGridConf.selection"
+    [masterDetail]="dataGridConf.masterDetail"
+    [columnChooser]="dataGridConf.columnChooser"
+    (onToolbarPreparing)="onToolbarPreparing($event)"
+    (onEditingStart)="onEditingStart($event)"
+    (onSelectionChanged)="onSelectionChanged($event)"
+    (onRowRemoved)="onRowRemoved($event)"
+  >
+  </dx-data-grid>
+</ng-template>
+
+<ng-template #lazyContainer></ng-template>

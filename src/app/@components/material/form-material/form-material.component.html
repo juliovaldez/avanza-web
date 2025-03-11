@@ -1,0 +1,74 @@
+<dx-popup
+  [width]="widthsSpan.width"
+  height="auto"
+  maxHeight="98%"
+  title="Material"
+  [showTitle]="true"
+  position="center"
+  [dragEnabled]="false"
+  [showCloseButton]="true"
+  [closeOnOutsideClick]="false"
+  [(visible)]="popupVisible"
+>
+  <div>
+    <dx-form [formData]="formMaterial" labelLocation="top">
+      <dxi-item
+        dataField="material_reference_id"
+        [label]="{ text: 'Codigo Material' }"
+        [editorOptions]="{ maxLength: 50 }"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="* Campo requerido"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        dataField="material_name"
+        [label]="{ text: 'Material' }"
+        [editorOptions]="{ maxLength: 50 }"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="* Campo requerido"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        editorType="dxNumberBox"
+        dataField="unit_weight"
+        [label]="{ text: 'Peso Unitario' }"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="* Campo requerido"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        editorType="dxSelectBox"
+        dataField="unit_base"
+        [label]="{ text: 'Unidad de Medida(Base)' }"
+        [editorOptions]="{
+          dataSource: units,
+          displayExpr: 'unit_name',
+          valueExpr: 'id',
+          searchEnabled: true
+        }"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="* Campo requerido"
+        ></dxi-validation-rule>
+      </dxi-item>
+    </dx-form>
+    <div class="card-flex-box">
+      <dx-button
+        style="margin: 0 0 0 2rem"
+        type="success"
+        [text]="formMaterial.id ? 'Actualizar' : 'Guardar'"
+        (onClick)="save()"
+      ></dx-button>
+    </div>
+  </div>
+</dx-popup>

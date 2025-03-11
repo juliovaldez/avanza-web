@@ -1,0 +1,100 @@
+<dx-popup
+  [width]="widthsSpan.width"
+  height="auto"
+  maxHeight="98%"
+  title="Conversion de Unidades"
+  [showTitle]="true"
+  position="center"
+  [dragEnabled]="false"
+  [showCloseButton]="true"
+  [closeOnOutsideClick]="false"
+  [(visible)]="popupVisible"
+>
+  <div>
+    <dx-form [formData]="formUnitConversion" labelLocation="top">
+      <dxi-item itemType="group" [colCount]="4">
+        <dxi-item
+          [colSpan]="4"
+          editorType="dxSelectBox"
+          dataField="material"
+          [label]="{ text: 'Material' }"
+          [editorOptions]="{
+            dataSource: materialsDatasource,
+            displayExpr: 'name',
+            valueExpr: 'id',
+            searchEnabled: true,
+            onSelectionChanged: onMaterialChanged
+          }"
+        >
+          <dxi-validation-rule
+            type="required"
+            message="* Campo requerido"
+          ></dxi-validation-rule>
+        </dxi-item>
+      </dxi-item>
+
+      <dxi-item itemType="group" [colCount]="3">
+        <dxi-item
+          editorType="dxSelectBox"
+          dataField="from_unit"
+          [label]="{ text: 'De Unidad' }"
+          [editorOptions]="{
+          dataSource: unitsDatasource,
+          displayExpr: 'name',
+          valueExpr: 'id',
+          searchEnabled: true,
+        }"
+        >
+          <dxi-validation-rule
+            type="required"
+            message="* Campo requerido"
+          ></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item
+          editorType="dxSelectBox"
+          dataField="to_unit"
+          [label]="{ text: 'A Unidad Base' }"
+          [editorOptions]="{
+            dataSource: unitsDatasource,
+            displayExpr: 'name',
+            valueExpr: 'id',
+            searchEnabled: true,
+            readOnly: true
+          }"
+        >
+          <dxi-validation-rule
+            type="required"
+            message="* Campo requerido"
+          ></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item
+          editorType="dxNumberBox"
+          dataField="conversion_factor"
+          [label]="{ text: 'Factor de Conversión' }"
+        >
+          <dxi-validation-rule
+            type="required"
+            message="* Campo requerido"
+          ></dxi-validation-rule>
+        </dxi-item>
+      </dxi-item>
+
+      <dxi-item
+        editorType="dxTextArea"
+        dataField="comments"
+        [label]="{ text: 'Comentarios' }"
+      >
+      </dxi-item>
+    </dx-form>
+    <div class="card-flex-box">
+      <dx-button
+        style="margin: 0 0 0 2rem"
+        type="success"
+        [text]="formUnitConversion.id ? 'Actualizar' : 'Guardar'"
+        (onClick)="save()"
+      ></dx-button>
+    </div>
+  </div>
+</dx-popup>

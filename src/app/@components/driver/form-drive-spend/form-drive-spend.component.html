@@ -1,0 +1,134 @@
+<dx-popup
+  [width]="widthsSpan.width"
+  height="auto"
+  maxHeight="98%"
+  title="Transacción (Instalacion)"
+  [showTitle]="true"
+  position="center"
+  [dragEnabled]="true"
+  [showCloseButton]="true"
+  [closeOnOutsideClick]="false"
+  [(visible)]="popupVisible"
+>
+  <div>
+    <dx-tab-panel
+      [animationEnabled]="true"
+      [swipeEnabled]="true"
+      [iconPosition]="'start'"
+    >
+      <dxi-item title="Datos Instalacion" icon="floppy">
+        <dx-form [formData]="formTxnDocument()" labelLocation="top">
+          <dxi-item itemType="group" [colCount]="2">
+            <dxi-item
+              editorType="dxSelectBox"
+              dataField="transaction_type"
+              [label]="{ text: 'Tipo Documento' }"
+              [editorOptions]="{
+                dataSource: transactionTypeDatasource,
+                displayExpr: 'name',
+                valueExpr: 'id',
+                searchEnabled: true
+              }"
+            >
+              <dxi-validation-rule
+                type="required"
+                message="* Campo requerido"
+              ></dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item
+              editorType="dxDateBox"
+              dataField="txn_start_date"
+              [label]="{ text: 'Fecha Instalacion' }"
+              [editorOptions]="{
+                displayFormat: 'yyyy-MM-dd'
+              }"
+            >
+              <dxi-validation-rule
+                type="required"
+                message="* Campo requerido"
+              ></dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item
+              editorType="dxDateBox"
+              dataField="txn_end_date"
+              [label]="{ text: 'Fecha Captura' }"
+              [editorOptions]="{
+                displayFormat: 'yyyy-MM-dd'
+              }"
+            >
+              <dxi-validation-rule
+                type="required"
+                message="* Campo requerido"
+              ></dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item
+              editorType="dxSelectBox"
+              dataField="from_user"
+              [label]="{ text: 'Entrega' }"
+              [editorOptions]="{
+                dataSource: fromUsersDatasource,
+                displayExpr: 'username_location',
+                valueExpr: 'id',
+                searchEnabled: true,
+                onSelectionChanged: onFromUserChanged
+              }"
+            >
+              <dxi-validation-rule
+                type="required"
+                message="* Campo requerido"
+              ></dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item
+              editorType="dxSelectBox"
+              dataField="to_user"
+              [label]="{ text: 'Recibio' }"
+              [editorOptions]="{
+                dataSource: toUsersDatasource,
+                displayExpr: 'username_location',
+                valueExpr: 'id',
+                searchEnabled: true,
+                onSelectionChanged: onToUserChanged
+              }"
+            >
+              <dxi-validation-rule
+                type="required"
+                message="* Campo requerido"
+              ></dxi-validation-rule>
+            </dxi-item>
+          </dxi-item>
+          <dxi-item
+            editorType="dxTextArea"
+            dataField="comments"
+            [label]="{ text: 'Comentarios' }"
+          >
+          </dxi-item>
+        </dx-form>
+      </dxi-item>
+      <dxi-item title="Materiales" icon="comment">
+        <app-list-materials-spend
+          [txnDocument]="formTxnDocument()"
+        ></app-list-materials-spend>
+      </dxi-item>
+    </dx-tab-panel>
+
+    <div class="card-flex-box">
+      <dx-button
+        style="margin: 0 0 0 2rem"
+        type="default"
+        text="Nuevo"
+        (onClick)="newModel()"
+      ></dx-button>
+
+      <dx-button
+        style="margin: 0 0 0 2rem"
+        type="success"
+        [text]="formTxnDocument().id ? 'Actualizar' : 'Guardar'"
+        (onClick)="save()"
+      ></dx-button>
+    </div>
+  </div>
+</dx-popup>

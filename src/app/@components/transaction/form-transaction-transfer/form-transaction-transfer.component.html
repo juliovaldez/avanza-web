@@ -1,0 +1,167 @@
+<dx-popup
+  [width]="widthsSpan.width"
+  height="auto"
+  maxHeight="98%"
+  title="Transacción (Transfer)"
+  [showTitle]="true"
+  position="center"
+  [dragEnabled]="false"
+  [showCloseButton]="true"
+  [closeOnOutsideClick]="false"
+  [(visible)]="popupVisible"
+>
+  <div>
+    <dx-form [formData]="formTransaction" labelLocation="top">
+      <dxi-item itemType="group" [colCount]="2">
+        <dxi-item
+          editorType="dxSelectBox"
+          dataField="txn_document"
+          [label]="{ text: 'Txn Document' }"
+          [editorOptions]="{
+            dataSource: txnDocumentDatasource,
+            displayExpr: 'folio_number',
+            valueExpr: 'id',
+            searchEnabled: true
+          }"
+        >
+          <dxi-validation-rule
+            type="required"
+            message="* Campo requerido"
+          ></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item
+          editorType="dxSelectBox"
+          dataField="status"
+          [label]="{ text: 'Estatus' }"
+          [editorOptions]="{
+            dataSource: status,
+            displayExpr: 'status_name',
+            valueExpr: 'id',
+            searchEnabled: true
+          }"
+        >
+          <dxi-validation-rule
+            type="required"
+            message="* Campo requerido"
+          ></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item
+          editorType="dxSelectBox"
+          dataField="material"
+          [label]="{ text: 'Material' }"
+          [editorOptions]="{
+            dataSource: materials,
+            displayExpr: 'name',
+            valueExpr: 'id',
+            searchEnabled: true,
+            showClearButton: true,
+            onSelectionChanged: onMaterialChanged
+          }"
+        >
+          <dxi-validation-rule
+            type="required"
+            message="* Campo requerido"
+          ></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item
+          editorType="dxTextBox"
+          dataField="serial_number"
+          [label]="{ text: 'Num. Serie' }"
+        >
+        </dxi-item>
+
+        <dxi-item
+          dataField=""
+          [label]="{ text: 'Cantidad Traslado' }"
+          template="transaction_quantity"
+        >
+          <dxi-validation-rule
+            type="required"
+            message="* Campo requerido "
+          ></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item
+          dataField=""
+          [label]="{ text: 'Cantidad Base' }"
+          template="base_quantity"
+        >
+          <dxi-validation-rule
+            type="required"
+            message="* Campo requerido "
+          ></dxi-validation-rule>
+        </dxi-item>
+      </dxi-item>
+      <dxi-item
+        editorType="dxTextArea"
+        dataField="comments"
+        [label]="{ text: 'Comentarios' }"
+      >
+      </dxi-item>
+      <div *dxTemplate="let data of 'transaction_quantity'">
+        <div
+          class="dx-field-item-content dx-field-item-content-location-bottom"
+          style="display: flex"
+        >
+          <dx-number-box
+            [(value)]="formTransaction.transaction_quantity!"
+            [min]="1"
+            [showSpinButtons]="true"
+            [showClearButton]="false"
+            width="90%"
+            (onValueChanged)="onTransactionQtyChanged($event)"
+          ></dx-number-box>
+          <dx-select-box
+            displayExpr="from_unit_name"
+            valueExpr="from_unit"
+            [dataSource]="unitConversions_temp"
+            [inputAttr]="{ 'aria-label': '' }"
+            [value]="formTransaction.transaction_unit!"
+            (onSelectionChanged)="onTransactionUnitChanged($event)"
+          ></dx-select-box>
+        </div>
+      </div>
+      <div *dxTemplate="let data of 'base_quantity'">
+        <div
+          class="dx-field-item-content dx-field-item-content-location-bottom"
+          style="display: flex"
+        >
+          <dx-number-box
+            [(value)]="formTransaction.base_quantity!"
+            [min]="1"
+            [showSpinButtons]="true"
+            [showClearButton]="false"
+            width="90%"
+            [readOnly]="true"
+          ></dx-number-box>
+          <dx-select-box
+            displayExpr="to_unit_name"
+            valueExpr="to_unit"
+            [dataSource]="unitConversions_temp"
+            [inputAttr]="{ 'aria-label': '' }"
+            [value]="formTransaction.base_unit!"
+            [readOnly]="true"
+          ></dx-select-box>
+        </div>
+      </div>
+    </dx-form>
+    <div class="card-flex-box">
+      <dx-button
+        style="margin: 0 0 0 2rem"
+        type="default"
+        text="Nuevo"
+        (onClick)="newModel()"
+      ></dx-button>
+
+      <dx-button
+        style="margin: 0 0 0 2rem"
+        type="success"
+        [text]="formTransaction.id ? 'Actualizar' : 'Guardar'"
+        (onClick)="save()"
+      ></dx-button>
+    </div>
+  </div>
+</dx-popup>

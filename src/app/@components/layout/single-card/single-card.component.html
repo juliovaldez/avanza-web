@@ -1,0 +1,22 @@
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  "
+>
+  <dx-box direction="row" height="100%" [width]="widthsSpan.width">
+    <dxi-item [ratio]="1">
+      <dx-scroll-view height="100%" class="with-footer single-card">
+        <div class="dx-card content">
+          <div class="header">
+            <div class="title">{{ title }}</div>
+            <div class="description">{{ description }}</div>
+          </div>
+          <ng-content></ng-content>
+        </div>
+      </dx-scroll-view>
+    </dxi-item>
+  </dx-box>
+</div>

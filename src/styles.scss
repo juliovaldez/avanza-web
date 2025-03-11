@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+.card-flex-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.2%;
+    width: auto;
+  }
+  .dx-loadpanel-wrapper{
+    z-index:100000!important;
+    .dx-loadpanel-content{
+      z-index:100000!important;
+    }
+  }
