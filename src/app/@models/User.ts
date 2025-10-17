@@ -1,8 +1,8 @@
 import { BaseModel } from "./BaseModels";
-import { InventoryProfile } from "./InventoryProfile";
+import { SaleProfile } from "./SaleProfile";
 export interface IUser {
   id?: number;
-  inventory_profile?: InventoryProfile;
+  sale_profile?: SaleProfile;
   username?: string;
   name?: string;
   last_name?: string;
@@ -11,8 +11,8 @@ export interface IUser {
   permissions?: string[];
 }
 
-export class User extends BaseModel implements IUser {
-  inventory_profile?: InventoryProfile;
+export class User extends BaseModel {
+  sale_profile?: SaleProfile;
   username?: string;
   name?: string;
   last_name?: string;
@@ -23,10 +23,5 @@ export class User extends BaseModel implements IUser {
   constructor(data: IUser = {}) {
     super();
     Object.assign(this, data);
-  }
-  get username_location(): string {
-    return `${this.username}   (${
-      this.inventory_profile?.location_name || ""
-    })`;
   }
 }

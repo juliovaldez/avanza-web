@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { ListStatusComponent } from '@components/status/list-status/list-status.component';
+import { StatusListComponent } from '@components/status/status-list/status-list.component';
 import { DxAccordionModule, } from 'devextreme-angular';
 
 @Component({
   selector: 'app-status',
   standalone: true,
   imports: [
-    ListStatusComponent,
+    StatusListComponent,
     DxAccordionModule],
   template: `
   <dx-accordion
@@ -18,9 +18,9 @@ import { DxAccordionModule, } from 'devextreme-angular';
     <div class="header">{{ tab }}</div>
   </div>
   <div *dxTemplate="let tab of 'item'">
-    <app-list-status
+    <app-status-list
     style="display:flex;flex-wrap: wrap;justify-content:center"
-    ></app-list-status>
+    ></app-status-list>
 
   </div>
 </dx-accordion>

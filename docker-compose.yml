@@ -1,0 +1,22 @@
+services:
+  angular_prod:
+    build:
+      context: .
+      target: prod
+    image: sphere_web_prod:v1
+    container_name: sphere_web_prod
+    ports:
+      - 80:80
+    env_file: .env
+    networks:
+      - sphere_net
+    command: sh -c "nginx -g 'daemon off;'"
+
+  # angular_build:
+  #   build:
+  #     context: .
+  #     target: build
+  #   command: tail -f /dev/null
+
+networks:
+  sphere_net:

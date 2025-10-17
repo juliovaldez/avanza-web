@@ -1,5 +1,5 @@
 # Etapa 2: Desarrollo con SSH
-FROM node:20 AS web_dev
+FROM node:20 AS dev
 
 # Crea y establece el directorio de trabajo
 WORKDIR /app
@@ -33,9 +33,13 @@ COPY . .
 RUN npm install -g @angular/cli
 RUN npm install
 
-# Construye la aplicación Angular
-RUN ng build --configuration production
+# ARG que se puede pasar desde el build o inyectar desde variable
+ARG NG_BUILD_CONFIG
+ENV NG_BUILD_CONFIG=${NG_BUILD_CONFIG:-production}
 
+RUN echo "📢 Angular Build config: $NG_BUILD_CONFIG"
+# Build dinámico según configuración
+RUN ng build --configuration $NG_BUILD_CONFIG --base-href /
 
 
 
@@ -43,7 +47,7 @@ RUN ng build --configuration production
 FROM nginx:alpine AS prod
 
 # Copia la configuración de Nginx
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copia los archivos de la aplicación construidos desde la etapa de construcción
 COPY --from=build /app/dist/admin_web/browser /usr/share/nginx/html

@@ -1,0 +1,41 @@
+services:
+  angular:
+    build:
+      context: .
+      target: sale_sphere_dev
+    image: sale_sphere_dev:v1
+    container_name: sale_sphere_web
+    ports:
+      - 4201:4200
+    environment:
+      API_HOST: django:8000
+    volumes:
+      - "/app/node_modules"
+      - "./:/app"
+    networks:
+      - sale_sphere_net
+    command: sh -c "ng serve --host 0.0.0.0 --port 4200 --poll 3000"
+    #command: tail -f /dev/null
+
+  angular_prod:
+    build:
+      context: .
+      target: sale_sphere_prod
+    image: sale_sphere_prod:v1
+    container_name: sale_sphere_prod
+    ports:
+      - 80:80
+    environment:
+      API_HOST: django:8000
+    networks:
+      - sale_sphere_net
+    command: sh -c "nginx -g 'daemon off;'"
+
+  angular_build:
+    build:
+      context: .
+      target: build
+    command: tail -f /dev/null
+
+networks:
+  sale_sphere_net:

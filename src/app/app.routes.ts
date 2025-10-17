@@ -16,61 +16,19 @@ export const routes: Routes = [
         path: 'users',
         title: 'Users',
         loadComponent: () =>
-          import('./@components').then((m) => m.UsersComponent),
+          import('./@components').then((m) => m.UserComponent),
       },
       {
         path: 'groups',
         title: 'Grupos',
         loadComponent: () =>
-          import('./@components').then((m) => m.GroupsComponent),
-      },
-      {
-        path: 'locations',
-        title: 'Ubicaciones',
-        loadComponent: () =>
-          import('./@components').then((m) => m.LocationComponent),
-      },
-      {
-        path: 'units',
-        title: 'Unidades',
-        loadComponent: () =>
-          import('./@components').then((m) => m.UnitsComponent),
+          import('./@components').then((m) => m.GroupComponent),
       },
       {
         path: 'status',
         title: 'Estatus',
         loadComponent: () =>
           import('./@components').then((m) => m.StatusComponent),
-      },
-      {
-        path: 'materials',
-        title: 'Materiales',
-        loadComponent: () =>
-          import('./@components').then((m) => m.MaterialComponent),
-      },
-      {
-        path: 'unit-conversions',
-        title: 'Conversion Unidades',
-        loadComponent: () =>
-          import('./@components').then((m) => m.UnitConversionComponent),
-      },
-      {
-        path: 'transaction-types',
-        title: 'Tipo de Transacciones',
-        loadComponent: () =>
-          import('./@components').then((m) => m.TransactionTypeComponent),
-      },
-      {
-        path: 'txn-documents',
-        title: 'Txn Documents',
-        loadComponent: () =>
-          import('./@components').then((m) => m.TxnDocumentComponent),
-      },
-      {
-        path: 'drives',
-        title: 'Tecnicos',
-        loadComponent: () =>
-          import('./@components').then((m) => m.DriverComponent),
       },
     ],
   },

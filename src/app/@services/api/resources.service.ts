@@ -15,7 +15,7 @@ import {
   User,
   Location,
   MaterialByUser,
-  InventoryProfile,
+  SaleProfile,
 } from "@models/index";
 import { map, Observable } from "rxjs";
 import { LoadResultObject } from "devextreme/common/data";
@@ -34,14 +34,14 @@ export class UserFetcherService extends BaseResource {
     super(httpClient, "/user");
   }
 
-  private insertInventoryProfile(user_id: number, resource: any): Observable<InventoryProfile> {
+  private insertInventoryProfile(user_id: number, resource: any): Observable<SaleProfile> {
     return this.httpClient
       .post<any>(`${this.endPoint}/${user_id}/inventory-profile/`, resource, {
         headers: this.getHeaders(),
       })
       .pipe(
         map((response) => {
-          return new InventoryProfile(response.data);
+          return new SaleProfile(response.data);
         })
       );
   }
@@ -52,7 +52,7 @@ export class UserFetcherService extends BaseResource {
       })
       .pipe(
         map((response) => {
-          return new InventoryProfile(response.data);
+          return new SaleProfile(response.data);
         })
       );
   }
@@ -63,7 +63,7 @@ export class UserFetcherService extends BaseResource {
       })
       .pipe(
         map((response) => {
-          return new InventoryProfile(response.data);
+          return new SaleProfile(response.data);
         })
       );
   }
@@ -108,11 +108,27 @@ export class PermissionService extends Resource<Permission> {
 }
 
 @Injectable({ providedIn: "root" })
+export class SaleProfileService extends Resource<SaleProfile> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/sale-profile", Unit);
+  }
+}
+
+@Injectable({ providedIn: "root" })
 export class UnitService extends Resource<Unit> {
   constructor(httpClient: HttpClient) {
     super(httpClient, "/units", Unit);
   }
 }
+
+
+
+
+
+
+
+
+
 
 @Injectable({ providedIn: "root" })
 export class LocationService extends Resource<Location> {

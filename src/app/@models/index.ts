@@ -10,6 +10,6 @@ export * from "./Kit";
 export * from "./TransactionType";
 export * from "./TxnDocument";
 export * from "./Location";
-export * from "./InventoryProfile";
+export * from "./SaleProfile";
 export * from "./Transaction";
 export * from "./FrontModels";
