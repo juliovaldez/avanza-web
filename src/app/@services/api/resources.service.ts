@@ -15,10 +15,16 @@ import {
   User,
   Location,
   MaterialByUser,
-  SaleProfile,
+  InventoryProfile,
+  FiberGoProfile,
+  OrbitRegistry,
+  FiberTask,
 } from "@models/index";
 import { map, Observable } from "rxjs";
 import { LoadResultObject } from "devextreme/common/data";
+import { OrbitSync } from "@models-dto/OrbitSync";
+import { TxnSnapshotDaily } from "@models/txnSnapshotDaily";
+import { TxnShapshot } from "@models-dto/TxnShapshot";
 
 @Injectable({ providedIn: "root" })
 export class UserService extends Resource<User> {
@@ -27,21 +33,23 @@ export class UserService extends Resource<User> {
   }
 }
 
-
 @Injectable({ providedIn: "root" })
 export class UserFetcherService extends BaseResource {
   constructor(httpClient: HttpClient) {
     super(httpClient, "/user");
   }
 
-  private insertInventoryProfile(user_id: number, resource: any): Observable<SaleProfile> {
+  private insertInventoryProfile(
+    user_id: number,
+    resource: any
+  ): Observable<InventoryProfile> {
     return this.httpClient
       .post<any>(`${this.endPoint}/${user_id}/inventory-profile/`, resource, {
         headers: this.getHeaders(),
       })
       .pipe(
         map((response) => {
-          return new SaleProfile(response.data);
+          return new InventoryProfile(response.data);
         })
       );
   }
@@ -52,7 +60,7 @@ export class UserFetcherService extends BaseResource {
       })
       .pipe(
         map((response) => {
-          return new SaleProfile(response.data);
+          return new InventoryProfile(response.data);
         })
       );
   }
@@ -63,7 +71,7 @@ export class UserFetcherService extends BaseResource {
       })
       .pipe(
         map((response) => {
-          return new SaleProfile(response.data);
+          return new InventoryProfile(response.data);
         })
       );
   }
@@ -72,8 +80,10 @@ export class UserFetcherService extends BaseResource {
       ? this.updateInventoryProfile(user_id, resource)
       : this.insertInventoryProfile(user_id, resource);
   }
-
-  getMaterialsByLocation(user_id: number, location_id: number = 0): Observable<LoadResultObject<MaterialByUser>> {
+  getMaterialsByLocation(
+    user_id: number,
+    location_id: number = 0
+  ): Observable<LoadResultObject<MaterialByUser>> {
     let params: HttpParams = new HttpParams();
     if (location_id) {
       params = params.set("location_id", location_id);
@@ -94,6 +104,53 @@ export class UserFetcherService extends BaseResource {
 }
 
 @Injectable({ providedIn: "root" })
+export class InventoryProfileService extends Resource<InventoryProfile> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/inventory-profile", InventoryProfile);
+  }
+}
+@Injectable({ providedIn: "root" })
+export class InventoryProfileFetcherService extends BaseResource {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/inventory-profile");
+  }
+  public executeDailySnapshot(resource: TxnShapshot): Observable<boolean> {
+    return this.httpClient
+      .post<any>(`${this.endPoint}/execute_daily_snapshot/`, resource, {
+        headers: this.getHeaders(),
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+}
+@Injectable({ providedIn: "root" })
+export class FiberGoProfileService extends Resource<FiberGoProfile> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/fibergo-profile", FiberGoProfile);
+  }
+}
+
+@Injectable({ providedIn: "root" })
+export class FiberGoProfileFetcherService extends BaseResource {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/fibergo-profile");
+  }
+  public executeOrbit(resource: OrbitSync): Observable<boolean> {
+    return this.httpClient
+      .post<any>(`${this.endPoint}/execute_orbit/`, resource, {
+        headers: this.getHeaders(),
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+}
+@Injectable({ providedIn: "root" })
 export class GroupService extends Resource<Group> {
   constructor(httpClient: HttpClient) {
     super(httpClient, "/group", Group);
@@ -108,27 +165,11 @@ export class PermissionService extends Resource<Permission> {
 }
 
 @Injectable({ providedIn: "root" })
-export class SaleProfileService extends Resource<SaleProfile> {
-  constructor(httpClient: HttpClient) {
-    super(httpClient, "/sale-profile", Unit);
-  }
-}
-
-@Injectable({ providedIn: "root" })
 export class UnitService extends Resource<Unit> {
   constructor(httpClient: HttpClient) {
     super(httpClient, "/units", Unit);
   }
 }
-
-
-
-
-
-
-
-
-
 
 @Injectable({ providedIn: "root" })
 export class LocationService extends Resource<Location> {
@@ -189,5 +230,26 @@ export class TxnDocumentService extends Resource<TxnDocument> {
 export class TransactionService extends Resource<Transaction> {
   constructor(httpClient: HttpClient) {
     super(httpClient, "/transaction", Transaction);
+  }
+}
+
+@Injectable({ providedIn: "root" })
+export class OrbitRegistryService extends Resource<OrbitRegistry> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/orbit-registry", OrbitRegistry);
+  }
+}
+
+@Injectable({ providedIn: "root" })
+export class FiberTaskService extends Resource<FiberTask> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/fiber-task", FiberTask);
+  }
+}
+
+@Injectable({ providedIn: "root" })
+export class TxnSnaphotDailyChartService extends Resource<TxnSnapshotDaily> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/txn-snapshot-daily", TxnSnapshotDaily);
   }
 }

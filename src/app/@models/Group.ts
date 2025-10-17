@@ -13,6 +13,7 @@ export class Group extends BaseModel implements IGroup {
   public static readonly ALMACEN = 1;
   public static readonly TECNICO = 3;
   public static readonly CONSUMO = 4;
+  public static readonly FIX = 5;
   constructor(data: IGroup = { permissions: [] }) {
     super();
     Object.assign(this, data);

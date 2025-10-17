@@ -23,7 +23,7 @@ export class AuthService {
     console.log("Service Auth Started");
   }
   login(credentials: any) {
-    return this.http.post<any>(`/auth/token`, credentials, {
+    return this.http.post<any>(`/auth/token/`, credentials, {
       headers: this.headers,
     });
   }

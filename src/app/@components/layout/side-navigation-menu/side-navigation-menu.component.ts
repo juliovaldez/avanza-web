@@ -8,22 +8,23 @@ import {
   ElementRef,
   AfterViewInit,
   OnDestroy,
-} from '@angular/core';
+} from "@angular/core";
 import {
   DxTreeViewModule,
   DxTreeViewComponent,
   DxTreeViewTypes,
-} from 'devextreme-angular/ui/tree-view';
-import { navigation } from '../../../app-navigation';
+} from "devextreme-angular/ui/tree-view";
+import { navigation } from "../../../app-navigation";
 
-import * as events from 'devextreme/events';
-import { AuthService } from '@services/core/auth.service';
+import * as events from "devextreme/events";
+import { AuthService } from "@services/core/auth.service";
+
 @Component({
-  selector: 'app-side-navigation-menu',
+  selector: "app-side-navigation-menu",
   standalone: true,
   imports: [DxTreeViewModule],
-  templateUrl: './side-navigation-menu.component.html',
-  styleUrls: ['./side-navigation-menu.component.scss'],
+  templateUrl: "./side-navigation-menu.component.html",
+  styleUrls: ["./side-navigation-menu.component.scss"],
 })
 export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
   @ViewChild(DxTreeViewComponent, { static: true })
@@ -100,12 +101,12 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    events.on(this.elementRef.nativeElement, 'dxclick', (e: Event) => {
+    events.on(this.elementRef.nativeElement, "dxclick", (e: Event) => {
       this.openMenu.next(e);
     });
   }
 
   ngOnDestroy() {
-    events.off(this.elementRef.nativeElement, 'dxclick');
+    events.off(this.elementRef.nativeElement, "dxclick");
   }
 }

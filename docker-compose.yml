@@ -2,8 +2,7 @@ services:
   angular_prod:
     build:
       context: .
-      target: prod
-    image: sphere_web_prod:v1
+      target: sphere_web_prod
     container_name: sphere_web_prod
     ports:
       - 80:80

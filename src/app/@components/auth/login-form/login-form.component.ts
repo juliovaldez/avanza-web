@@ -1,20 +1,20 @@
-import { CommonModule } from '@angular/common';
-import { Component, NgModule } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { DxFormModule } from 'devextreme-angular/ui/form';
-import { DxLoadIndicatorModule } from 'devextreme-angular/ui/load-indicator';
+import { CommonModule } from "@angular/common";
+import { Component, NgModule } from "@angular/core";
+import { Router, RouterModule } from "@angular/router";
+import { DxFormModule } from "devextreme-angular/ui/form";
+import { DxLoadIndicatorModule } from "devextreme-angular/ui/load-indicator";
 import {
   AuthService,
   LocalstorageService,
   SpinnerService,
-} from '@services/core';
+} from "@services/core";
 
 @Component({
-  selector: 'app-login-form',
+  selector: "app-login-form",
   standalone: true,
   imports: [CommonModule, RouterModule, DxFormModule, DxLoadIndicatorModule],
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss'],
+  templateUrl: "./login-form.component.html",
+  styleUrls: ["./login-form.component.scss"],
 })
 export class LoginFormComponent {
   formData: any = {};
@@ -30,7 +30,7 @@ export class LoginFormComponent {
     this.authService.login(this.formData).subscribe({
       next: (response) => {
         this.localstorageService.setToken(response.token);
-        this.router.navigate(['/']);
+        this.router.navigate(["/"]);
       },
       error: (error) => {
         console.log(error);
@@ -39,6 +39,6 @@ export class LoginFormComponent {
   }
 
   onCreateAccountClick = () => {
-    this.router.navigate(['/create-account']);
+    this.router.navigate(["/create-account"]);
   };
 }

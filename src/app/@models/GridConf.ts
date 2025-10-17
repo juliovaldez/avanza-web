@@ -1,5 +1,12 @@
+import { saveAs } from "file-saver";
+import { exportDataGrid } from "devextreme-angular/common/export/excel";
+import ExcelJS from "exceljs/dist/exceljs.min.js";
+
 export interface IGridConf {
+  active?: boolean;
+  name?: string;
   dataSource?: any;
+  filterValue?: any;
   columns?: any;
   paging?: any;
   pager?: any;
@@ -18,11 +25,14 @@ export interface IGridConf {
   summary?: any;
   toolbar?: any;
   columnResizingMode?: any;
-
+  export?: any;
 }
 
 export class GridConf implements IGridConf {
+  active: boolean = false;
+  name = "default";
   dataSource?: any;
+  filterValue?: any;
   columns?: any;
   paging?: any;
   pager?: any;
@@ -42,11 +52,12 @@ export class GridConf implements IGridConf {
   summary?: any;
   toolbar?: any;
   columnResizingMode?: any;
-
+  export?: any;
   constructor() {
+    this.filterValue = [];
     this.columns = [];
     this.paging = {
-      pageSize: 10,
+      pageSize: 25,
       pageIndex: 0,
     };
     this.pager = {
@@ -105,35 +116,60 @@ export class GridConf implements IGridConf {
       },
     };
     this.groupPanel = {
-      visible: true
-    }
+      visible: true,
+    };
     this.grouping = {
-      autoExpandAll: false
-    }
+      autoExpandAll: false,
+    };
     this.remoteOperations = {
       filtering: true,
       grouping: true,
       groupPaging: true,
       paging: true,
       sorting: true,
-      summary: true
+      summary: true,
+      repaintChangesOnly: false,
     };
     this.summary = {
-      groupItems: []
-    }
+      groupItems: [],
+    };
     this.toolbar = {
       items: [],
-
-    }
+    };
     this.columnResizingMode = "widget";
 
+    this.export = {
+      enabled: true,
+      fileName: "Default",
+    };
   }
 
   setData(data: IGridConf) {
     Object.assign(this, data);
     this.columns.push({
       type: "buttons",
+      fixed: true,
+      fixedPosition: "left",
       buttons: [{ name: "edit" }, { name: "delete" }, ...this.buttons],
+    });
+  }
+
+  onExporting(e: any) {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet("Employees");
+    console.log(e.component.totalCount());
+    exportDataGrid({
+      component: e.component,
+      worksheet,
+      autoFilterEnabled: true,
+      selectedRowsOnly: false,
+    }).then(() => {
+      workbook.xlsx.writeBuffer().then((buffer: ArrayBuffer) => {
+        const blob = new Blob([buffer], {
+          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        });
+        saveAs(blob, `${this.name || "default"}.xlsx`);
+      });
     });
   }
 }

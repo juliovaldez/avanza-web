@@ -1,0 +1,87 @@
+<dx-popup
+  [width]="widthsSpan.width"
+  height="auto"
+  title="Usuario"
+  [showTitle]="true"
+  position="center"
+  [dragEnabled]="true"
+  [showCloseButton]="true"
+  [closeOnOutsideClick]="false"
+  [(visible)]="onPopup"
+>
+  <div id="popup">
+    <dx-form [formData]="formUser" labelLocation="top">
+      <dxi-item
+        dataField="email"
+        [label]="{ text: 'Correo' }"
+        [editorOptions]="{ maxLength: 50 }"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="* Campo requerido"
+        ></dxi-validation-rule>
+        <dxi-validation-rule
+          type="email"
+          message="* Correo invalido"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        dataField="username"
+        [label]="{ text: 'Nombre de Usuario' }"
+        [editorOptions]="{ maxLength: 50 }"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="* Campo requerido"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        dataField="first_name"
+        [label]="{ text: 'Nombre' }"
+        [editorOptions]="{ maxLength: 50 }"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="* Campo requerido"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        dataField="last_name"
+        [label]="{ text: 'Apellidos' }"
+        [editorOptions]="{ maxLength: 50 }"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="* Campo requerido"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        editorType="dxTagBox"
+        dataField="groups"
+        [label]="{ text: 'Grupos' }"
+        [colSpan]="4"
+        [editorOptions]="{
+          dataSource: groups,
+          displayExpr: 'name',
+          valueExpr: 'id',
+          searchEnabled: true,
+          multiple: true,
+          
+        }"
+      >
+      </dxi-item>
+    </dx-form>
+    <div class="card-flex-box">
+      <dx-button
+        style="margin: 0 0 0 2rem"
+        type="success"
+        [text]="formUser.id ? 'Actualizar' : 'Guardar'"
+        (onClick)="save()"
+      ></dx-button>
+    </div>
+  </div>
+</dx-popup>

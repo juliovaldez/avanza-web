@@ -6,7 +6,7 @@ import { Subject, Observable, fromEvent, BehaviorSubject } from 'rxjs';
 })
 export class SpinnerService {
   public SpinnerState = new BehaviorSubject<number>(0);
-  constructor() {}
+  constructor() { }
   Activate() {
     this.SpinnerState.next(this.SpinnerState.value + 1);
   }

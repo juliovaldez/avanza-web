@@ -2,8 +2,7 @@ services:
   angular:
     build:
       context: .
-      target: dev
-    image: sphere_web_dev:v1
+      target: sphere_web_dev
     container_name: sphere_web_dev
     ports:
       - 4201:4200
