@@ -11,5 +11,5 @@
 
 export const environment = {
   production: true,
-  ApiUrl: "https://admin-api-a49x.onrender.com/api",
+  ApiUrl: "https://sphere-api-a49x.onrender.com/api",
 };

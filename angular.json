@@ -5,7 +5,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "admin_web": {
+    "sphere_web": {
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -41,7 +41,7 @@
             "assets": [],
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "outputPath": "dist/admin_web",
+            "outputPath": "dist/sphere_web",
             "polyfills": ["zone.js"],
             "scripts": [],
             "styles": [
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "development": {
-              "buildTarget": "admin_web:build:development"
+              "buildTarget": "sphere_web:build:development"
             },
             "production": {
-              "buildTarget": "admin_web:build:production"
+              "buildTarget": "sphere_web:build:production"
             }
           },
           "defaultConfiguration": "development"
