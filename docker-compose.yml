@@ -1,5 +1,5 @@
 services:
-  angular_prod:
+  sphere_web_prod:
     build:
       context: .
       target: sphere_web_prod

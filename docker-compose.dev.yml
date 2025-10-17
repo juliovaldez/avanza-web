@@ -1,5 +1,5 @@
 services:
-  angular:
+  sphere_web_dev:
     build:
       context: .
       target: sphere_web_dev
