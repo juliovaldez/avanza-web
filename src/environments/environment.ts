@@ -10,5 +10,5 @@
 //const ApiUrl = "http://127.0.0.1:8000/";
 
 export const environment = {
-  ApiUrl: "http://127.0.0.1:8001/api",
+  ApiUrl: "http://localhost:8001/api",
 };

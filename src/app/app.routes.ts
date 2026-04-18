@@ -16,19 +16,13 @@ export const routes: Routes = [
         path: 'users',
         title: 'Users',
         loadComponent: () =>
-          import('./@components').then((m) => m.UserComponent),
+          import('./@components').then((m) => m.UsersComponent),
       },
       {
         path: 'groups',
         title: 'Grupos',
         loadComponent: () =>
-          import('./@components').then((m) => m.GroupComponent),
-      },
-      {
-        path: 'status',
-        title: 'Estatus',
-        loadComponent: () =>
-          import('./@components').then((m) => m.StatusComponent),
+          import('./@components').then((m) => m.GroupsComponent),
       },
     ],
   },

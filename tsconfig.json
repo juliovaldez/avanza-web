@@ -11,6 +11,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
@@ -26,6 +27,7 @@
       "@services/*": ["app/@services/*"],
       "@layouts/*": ["app/@layouts/*"],
       "@models/*": ["app/@models/*"],
+      "@models-dto/*": ["app/@models-dto/*"],
       "@components/*": ["app/@components/*"]
     }
   },
