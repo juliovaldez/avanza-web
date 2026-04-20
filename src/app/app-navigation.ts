@@ -84,6 +84,45 @@ export const navigation = [
     ],
   },
   {
+    text: "Testimonios",
+    icon: "comment",
+    items: [
+      {
+        text: "Lista de Testimonios",
+        path: "/home/testimonios",
+        data: {
+          permissions: [PERMISSIONS.testimonials_view_testimonio],
+        },
+      },
+    ],
+  },
+  {
+    text: "Contacto",
+    icon: "email",
+    items: [
+      {
+        text: "Configuración",
+        path: "/home/contacto",
+        data: {
+          permissions: [PERMISSIONS.contacto_view_contactoconfig],
+        },
+      },
+    ],
+  },
+  {
+    text: "Casos de Éxito",
+    icon: "photo",
+    items: [
+      {
+        text: "Lista de Casos de Éxito",
+        path: "/home/casos-exito",
+        data: {
+          permissions: [PERMISSIONS.casos_exito_view_casoexito],
+        },
+      },
+    ],
+  },
+  {
     text: "Inventario",
     icon: "folder",
     items: [

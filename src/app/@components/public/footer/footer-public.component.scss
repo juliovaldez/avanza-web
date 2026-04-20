@@ -1,0 +1,121 @@
+$color-primario-50:  #f7f6ef;
+$color-primario-950: #301f18;
+$color-link-border:  #dae5e7;
+
+.public-footer {
+  background: $color-primario-50;
+  width: 100%;
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 32px 80px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex-shrink: 0;
+    min-width: 258px;
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__col-title {
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    color: $color-primario-950;
+    white-space: nowrap;
+  }
+
+  &__col-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: $color-primario-950;
+    text-decoration: none;
+    border-bottom: 1px solid $color-link-border;
+    padding-right: 4px;
+    transition: border-color 0.2s ease;
+
+    &:hover {
+      border-bottom-color: $color-primario-950;
+    }
+
+    &--external {
+      align-items: center;
+    }
+  }
+
+  &__external-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &__text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: $color-primario-950;
+    margin: 0;
+    border-bottom: 1px solid $color-link-border;
+    padding-right: 4px;
+    padding-bottom: 2px;
+  }
+
+  &__whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: $color-primario-950;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__whatsapp-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+}

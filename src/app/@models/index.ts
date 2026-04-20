@@ -18,3 +18,6 @@ export * from "./FiberGoProfile";
 export * from "./OrbitRegistry";
 export * from "./FiberTask";
 export * from "./txnSnapshotDaily";
+export * from "./Testimonio";
+export * from "./CasoExito";
+export * from "./ContactoConfig";

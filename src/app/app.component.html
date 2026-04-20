@@ -1,11 +1,16 @@
-<ng-container *ngIf="isAuthenticated(); else unauthenticated">
-  <app-side-nav-outer-toolbar title="SaleSphere">
-    <router-outlet></router-outlet>
-  </app-side-nav-outer-toolbar>
+<ng-container *ngIf="isPublicRoute; else adminOrAuth">
+  <router-outlet></router-outlet>
 </ng-container>
 
-<ng-template #unauthenticated>
-  <app-unauthenticated-content></app-unauthenticated-content>
+<ng-template #adminOrAuth>
+  <ng-container *ngIf="isAuthenticated(); else unauthenticated">
+    <app-side-nav-outer-toolbar title="SaleSphere">
+      <router-outlet></router-outlet>
+    </app-side-nav-outer-toolbar>
+  </ng-container>
+  <ng-template #unauthenticated>
+    <app-unauthenticated-content></app-unauthenticated-content>
+  </ng-template>
 </ng-template>
 
 <dx-load-panel

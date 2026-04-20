@@ -1,8 +1,5 @@
-@use "sass:color";
-@use "variables.base" as *;
-
 :host {
-  background-color: color.scale($base-bg, $lightness: -5%);
+  background-color: #ffffff;
   display: flex;
   height: 100%;
   width: 100%;

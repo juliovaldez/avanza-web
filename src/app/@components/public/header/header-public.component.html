@@ -1,0 +1,24 @@
+<header class="public-header">
+  <div class="public-header__container">
+
+    <a routerLink="/" class="public-header__logo" aria-label="Avanza Tecnología Inmobiliaria">
+      <img src="assets/images/logo.svg" alt="Avanza Tecnología Inmobiliaria" />
+    </a>
+
+    <nav class="public-header__nav" aria-label="Navegación principal">
+      <a
+        *ngFor="let link of navLinks"
+        [routerLink]="link.path"
+        routerLinkActive="public-header__nav-link--active"
+        class="public-header__nav-link"
+      >
+        {{ link.label }}
+      </a>
+    </nav>
+
+    <a routerLink="/login-form" class="public-header__btn-login">
+      Inicia sesión
+    </a>
+
+  </div>
+</header>

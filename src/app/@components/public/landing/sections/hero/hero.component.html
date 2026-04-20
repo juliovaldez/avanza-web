@@ -1,0 +1,33 @@
+<section class="hero">
+  <div class="hero__card">
+    <div class="hero__content">
+      <h1 class="hero__title">Vende tu casa en solo 9 días</h1>
+      <p class="hero__terms">*Consulta términos y condiciones.</p>
+      <p class="hero__description">
+        Recibe una oferta justa por tu propiedad sin intermediarios, sin
+        complicaciones y con un proceso 100% transparente.
+      </p>
+      <div class="hero__search">
+        <span class="hero__search-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#212529"/>
+          </svg>
+        </span>
+        <input
+          type="text"
+          [(ngModel)]="address"
+          placeholder="Escribe la dirección"
+          class="hero__search-field"
+        />
+        <a routerLink="/vende" class="hero__search-btn">Recibe una oferta</a>
+      </div>
+      <p class="hero__tagline">
+        Nuestros casos de éxito no son casualidad: son el resultado de acompañar
+        a cada cliente con compromiso y atención real.
+      </p>
+    </div>
+    <div class="hero__image">
+      <img src="assets/images/hero-house.webp" alt="Casa en venta" />
+    </div>
+  </div>
+</section>

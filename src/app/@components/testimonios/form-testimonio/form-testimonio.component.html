@@ -1,0 +1,64 @@
+<dx-popup
+  [visible]="isVisible"
+  [showTitle]="true"
+  [title]="testimonio.id ? 'Editar Testimonio' : 'Nuevo Testimonio'"
+  [dragEnabled]="true"
+  [showCloseButton]="true"
+  [closeOnOutsideClick]="false"
+  width="600px"
+  height="auto"
+  position="center"
+  (onHidden)="onHidden()"
+>
+  <dx-form #form [formData]="formData" [colCount]="1" validationGroup="testimonioForm">
+    <dxi-item
+      dataField="nombre_completo"
+      editorType="dxTextBox"
+      [label]="{ text: 'Nombre completo' }"
+    >
+      <dxi-validation-rule type="required" message="Requerido"></dxi-validation-rule>
+    </dxi-item>
+
+    <dxi-item
+      dataField="ciudad"
+      editorType="dxTextBox"
+      [label]="{ text: 'Ciudad' }"
+    >
+      <dxi-validation-rule type="required" message="Requerido"></dxi-validation-rule>
+    </dxi-item>
+
+    <dxi-item
+      dataField="estado"
+      editorType="dxTextBox"
+      [label]="{ text: 'Estado' }"
+    >
+      <dxi-validation-rule type="required" message="Requerido"></dxi-validation-rule>
+    </dxi-item>
+
+    <dxi-item
+      dataField="descripcion"
+      editorType="dxTextArea"
+      [label]="{ text: 'Testimonio' }"
+      [editorOptions]="{ height: 120 }"
+    >
+      <dxi-validation-rule type="required" message="Requerido"></dxi-validation-rule>
+    </dxi-item>
+  </dx-form>
+
+  <div style="margin: 12px 0 4px; font-size: 13px; color: #666;">Fotografía</div>
+  <dx-file-uploader
+    [multiple]="false"
+    accept="image/*"
+    uploadMode="useForm"
+    (onValueChanged)="onFileSelected($event)"
+  ></dx-file-uploader>
+
+  <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px;">
+    <dx-button text="Cancelar" (onClick)="onHidden()"></dx-button>
+    <dx-button
+      text="Guardar"
+      type="default"
+      (onClick)="save()"
+    ></dx-button>
+  </div>
+</dx-popup>

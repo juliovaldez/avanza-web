@@ -1,0 +1,149 @@
+$p-100: #ece7d5;
+$p-900: #553b2e;
+$p-950: #301f18;
+
+.contacto {
+  padding: 32px 80px;
+
+  &__card {
+    background: $p-100;
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+
+  &__headline {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 400px;
+    flex-shrink: 0;
+    padding-bottom: 16px;
+  }
+
+  &__pre {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: $p-900;
+    margin: 0;
+  }
+
+  &__title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 52px;
+    color: $p-950;
+    margin: 0;
+  }
+
+  &__sub {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: $p-900;
+    margin: 0;
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__horario {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: $p-950;
+    margin: 0;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: $p-950;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    border-radius: 100px;
+
+    &-icon {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__social-label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: $p-950;
+    margin: 0;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+
+      img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+      }
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  &__image {
+    width: 402px;
+    height: 292px;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

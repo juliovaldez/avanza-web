@@ -1,4 +1,21 @@
 export enum PERMISSIONS {
+// Contacto
+contacto_view_contactoconfig = 'contacto.view_contactoconfig',
+contacto_add_contactoconfig = 'contacto.add_contactoconfig',
+contacto_change_contactoconfig = 'contacto.change_contactoconfig',
+
+// Casos de Éxito
+casos_exito_view_casoexito = 'casos_exito.view_casoexito',
+casos_exito_add_casoexito = 'casos_exito.add_casoexito',
+casos_exito_change_casoexito = 'casos_exito.change_casoexito',
+casos_exito_delete_casoexito = 'casos_exito.delete_casoexito',
+
+// Testimonials
+testimonials_view_testimonio = 'testimonials.view_testimonio',
+testimonials_add_testimonio = 'testimonials.add_testimonio',
+testimonials_change_testimonio = 'testimonials.change_testimonio',
+testimonials_delete_testimonio = 'testimonials.delete_testimonio',
+
 // Users
 users_view_user = 'users.view_user',
 users_add_user = 'users.add_user',

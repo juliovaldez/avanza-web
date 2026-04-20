@@ -1,0 +1,85 @@
+$color-primario-500: #a7864c;
+$color-primario-700: #735335;
+$color-primario-950: #301f18;
+$color-secundario-200: #e7e5e4;
+
+.public-header {
+  background: #ffffff;
+  border-bottom: 1px solid $color-secundario-200;
+  height: 80px;
+  width: 100%;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 16px 80px;
+    height: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    img {
+      height: 48px;
+      width: auto;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+  }
+
+  &__nav-link {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: $color-primario-950;
+    text-decoration: none;
+    white-space: nowrap;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+
+    &:hover {
+      border-bottom-color: rgba($color-primario-500, 0.4);
+    }
+
+    &--active {
+      font-weight: 500;
+      border-bottom-color: $color-primario-500;
+    }
+  }
+
+  &__btn-login {
+    flex-shrink: 0;
+    background: $color-primario-500;
+    border: 1px solid $color-primario-700;
+    border-radius: 100px;
+    color: #ffffff;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 9px 17px;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-left: auto;
+
+    &:hover {
+      background: $color-primario-700;
+    }
+  }
+}

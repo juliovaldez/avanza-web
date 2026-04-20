@@ -1,0 +1,41 @@
+<div class="card-flex-box">
+  <dx-accordion
+    [dataSource]="['Casos de Éxito']"
+    [collapsible]="true"
+    [multiple]="false"
+    [animationDuration]="300"
+    [selectedItems]="['Casos de Éxito']"
+  >
+    <div *dxTemplate="let tab of 'title'">
+      <div class="header">{{ tab }}</div>
+    </div>
+    <div *dxTemplate="let tab of 'item'">
+      <dx-data-grid
+        id="casosExitoGrid"
+        [dataSource]="dataGridConf.dataSource"
+        [columns]="dataGridConf.columns"
+        [cacheEnabled]="false"
+        [showBorders]="true"
+        [remoteOperations]="true"
+        [allowColumnReordering]="true"
+        [allowColumnResizing]="true"
+        [columnResizingMode]="'widget'"
+        [columnAutoWidth]="true"
+        [paging]="dataGridConf.paging"
+        [pager]="dataGridConf.pager"
+        [searchPanel]="dataGridConf.searchPanel"
+        [headerFilter]="dataGridConf.headerFilter"
+        [editing]="dataGridConf.editing"
+        (onToolbarPreparing)="onToolbarPreparing($event)"
+        (onEditingStart)="onEditingStart($event)"
+      >
+      </dx-data-grid>
+    </div>
+  </dx-accordion>
+</div>
+
+<app-form-caso-exito
+  *ngIf="showForm"
+  [caso]="selectedCaso"
+  (closed)="closeForm()"
+></app-form-caso-exito>

@@ -1,7 +1,8 @@
 // Angular imports
 import { Component, HostBinding, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { RouterOutlet } from "@angular/router";
+import { Router, RouterOutlet, NavigationEnd } from "@angular/router";
+import { filter } from "rxjs/operators";
 
 // Services
 import { AuthService, ScreenService } from "@services/core";
@@ -20,6 +21,8 @@ import { DxLoadPanelModule } from "devextreme-angular";
 import { locale, loadMessages } from "devextreme/localization";
 import * as esMessages from "devextreme/localization/messages/es.json";
 
+const PUBLIC_PATHS = ['/', '/vende', '/compra', '/quienes-somos'];
+
 @Component({
   selector: "app-root",
   standalone: true,
@@ -34,8 +37,11 @@ import * as esMessages from "devextreme/localization/messages/es.json";
   styleUrl: "./app.component.scss",
   providers: [ScreenService],
 })
+
 export class AppComponent implements OnInit {
   lOCATE: string = "es";
+  isPublicRoute = false;
+
   @HostBinding("class") get getClass() {
     return Object.keys(this.screen.sizes)
       .filter((cl) => this.screen.sizes[cl])
@@ -45,8 +51,16 @@ export class AppComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private screen: ScreenService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private router: Router
   ) {
+    this.router.events
+      .pipe(filter((e) => e instanceof NavigationEnd))
+      .subscribe((e: NavigationEnd) => {
+        this.isPublicRoute = PUBLIC_PATHS.some(
+          (p) => e.urlAfterRedirects === p || e.urlAfterRedirects.startsWith(p + '/')
+        );
+      });
     this.initMessages();
     locale(this.lOCATE);
 

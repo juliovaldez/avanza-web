@@ -1,0 +1,27 @@
+.contacto-admin {
+  max-width: 800px;
+  padding: 24px;
+
+  &__header {
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  &__saved {
+    color: #4caf50;
+    font-size: 14px;
+  }
+}

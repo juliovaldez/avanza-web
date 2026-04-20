@@ -19,6 +19,9 @@ import {
   FiberGoProfile,
   OrbitRegistry,
   FiberTask,
+  Testimonio,
+  CasoExito,
+  ContactoConfig,
 } from "@models/index";
 import { map, Observable } from "rxjs";
 import { LoadResultObject } from "devextreme/common/data";
@@ -251,5 +254,100 @@ export class FiberTaskService extends Resource<FiberTask> {
 export class TxnSnaphotDailyChartService extends Resource<TxnSnapshotDaily> {
   constructor(httpClient: HttpClient) {
     super(httpClient, "/txn-snapshot-daily", TxnSnapshotDaily);
+  }
+}
+
+@Injectable({ providedIn: "root" })
+export class ContactoService extends BaseResource {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/contacto");
+  }
+
+  public getAll(): Observable<ContactoConfig[]> {
+    return this.httpClient
+      .get<any>(`${this.endPoint}/`, { headers: this.getHeaders() })
+      .pipe(map((r) => (r.data as any[]).map((item) => new ContactoConfig(item))));
+  }
+
+  public create(payload: ContactoConfig): Observable<ContactoConfig> {
+    return this.httpClient
+      .post<any>(`${this.endPoint}/`, payload, { headers: this.getHeaders() })
+      .pipe(map((r) => new ContactoConfig(r.data)));
+  }
+
+  public update(id: number, payload: ContactoConfig): Observable<ContactoConfig> {
+    return this.httpClient
+      .patch<any>(`${this.endPoint}/${id}/`, payload, { headers: this.getHeaders() })
+      .pipe(map((r) => new ContactoConfig(r.data)));
+  }
+
+  public getPublic(): Observable<ContactoConfig | null> {
+    return this.httpClient
+      .get<any>(`${this.endPoint}/public/`)
+      .pipe(map((r) => (r.data ? new ContactoConfig(r.data) : null)));
+  }
+}
+
+@Injectable({ providedIn: "root" })
+export class CasoExitoService extends Resource<CasoExito> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/caso-exito", CasoExito);
+  }
+}
+
+@Injectable({ providedIn: "root" })
+export class CasoExitoFetcherService extends BaseResource {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/caso-exito");
+  }
+
+  public create(payload: FormData): Observable<CasoExito> {
+    return this.httpClient
+      .post<any>(`${this.endPoint}/`, payload, { headers: this.getHeaders() })
+      .pipe(map((r) => new CasoExito(r.data)));
+  }
+
+  public update(id: number, payload: FormData): Observable<CasoExito> {
+    return this.httpClient
+      .patch<any>(`${this.endPoint}/${id}/`, payload, { headers: this.getHeaders() })
+      .pipe(map((r) => new CasoExito(r.data)));
+  }
+
+  public getPublic(): Observable<CasoExito[]> {
+    return this.httpClient
+      .get<any>(`${this.endPoint}/public/`)
+      .pipe(map((r) => (r.data as any[]).map((item) => new CasoExito(item))));
+  }
+}
+
+@Injectable({ providedIn: "root" })
+export class TestimonioService extends Resource<Testimonio> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/testimonial", Testimonio);
+  }
+}
+
+@Injectable({ providedIn: "root" })
+export class TestimonioFetcherService extends BaseResource {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/testimonial");
+  }
+
+  public create(payload: FormData): Observable<Testimonio> {
+    return this.httpClient
+      .post<any>(`${this.endPoint}/`, payload, { headers: this.getHeaders() })
+      .pipe(map((r) => new Testimonio(r.data)));
+  }
+
+  public update(id: number, payload: FormData): Observable<Testimonio> {
+    return this.httpClient
+      .patch<any>(`${this.endPoint}/${id}/`, payload, { headers: this.getHeaders() })
+      .pipe(map((r) => new Testimonio(r.data)));
+  }
+
+  public getPublic(): Observable<Testimonio[]> {
+    return this.httpClient
+      .get<any>(`${this.endPoint}/public/`)
+      .pipe(map((r) => (r.data as any[]).map((item) => new Testimonio(item))));
   }
 }

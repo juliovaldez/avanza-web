@@ -1,0 +1,20 @@
+<section class="servicios">
+  <div class="servicios__inner">
+    <h2 class="servicios__title">Nuestros servicios AVANZA</h2>
+
+    <div class="servicios__grid">
+      <div *ngFor="let s of servicios" class="servicios__card">
+        <div class="servicios__card-image">
+          <img [src]="s.icon" [alt]="s.titulo" />
+        </div>
+        <div class="servicios__card-body">
+          <div class="servicios__card-info">
+            <h3 class="servicios__card-title">{{ s.titulo }}</h3>
+            <p class="servicios__card-desc">{{ s.descripcion }}</p>
+          </div>
+          <a [routerLink]="s.ctaLink" class="servicios__card-btn">{{ s.ctaLabel }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,75 @@
+<section class="contacto">
+  <div class="contacto__card">
+    <div class="contacto__headline">
+      <p class="contacto__pre">Siempre contigo</p>
+      <h2 class="contacto__title">¿Necesitas ayuda?</h2>
+      <p class="contacto__sub">Estamos disponibles para ayudarte.</p>
+    </div>
+
+    <div class="contacto__info">
+      <p class="contacto__horario">
+        Horario de atención<br />
+        Lunes a viernes de 9:00 am a 5:00 pm
+      </p>
+
+      <a
+        *ngIf="contacto?.whatsapp"
+        [href]="contacto!.whatsappUrl"
+        target="_blank"
+        rel="noopener"
+        class="contacto__row"
+      >
+        <img src="assets/icons/whatsapp.svg" alt="WhatsApp" class="contacto__row-icon" />
+        <span>{{ contacto!.whatsapp }}</span>
+      </a>
+
+      <a
+        *ngIf="contacto?.correo"
+        [href]="'mailto:' + contacto!.correo"
+        class="contacto__row"
+      >
+        <img src="assets/icons/envelope.svg" alt="Email" class="contacto__row-icon" />
+        <span>{{ contacto!.correo }}</span>
+      </a>
+
+      <p class="contacto__social-label">
+        Síguenos en todas nuestras redes sociales
+        <strong>Avanza nexa</strong>
+      </p>
+
+      <div class="contacto__social">
+        <a
+          *ngIf="contacto?.facebook"
+          [href]="contacto!.facebook"
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook"
+        >
+          <img src="assets/icons/facebook.svg" alt="Facebook" />
+        </a>
+        <a
+          *ngIf="contacto?.instagram"
+          [href]="contacto!.instagram"
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram"
+        >
+          <img src="assets/icons/instagram.svg" alt="Instagram" />
+        </a>
+        <a
+          *ngIf="contacto?.tiktok"
+          [href]="contacto!.tiktok"
+          target="_blank"
+          rel="noopener"
+          aria-label="TikTok"
+        >
+          <img src="assets/icons/tiktok.svg" alt="TikTok" />
+        </a>
+      </div>
+    </div>
+
+    <div class="contacto__image">
+      <img src="assets/images/contacto-house.svg" alt="Casa Avanza" />
+    </div>
+  </div>
+</section>

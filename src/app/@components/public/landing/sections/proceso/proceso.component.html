@@ -1,0 +1,35 @@
+<section class="proceso">
+  <div class="proceso__inner">
+    <div class="proceso__visual">
+      <img
+        src="assets/images/celular-mapa.svg"
+        alt="Mapa de cobertura con app Avanza"
+        class="proceso__visual-img"
+      />
+    </div>
+
+    <div class="proceso__body">
+      <div class="proceso__header">
+        <h2 class="proceso__title">
+          Olvídate de problemas, nosotros compramos tu casa
+        </h2>
+        <p class="proceso__subtitle">
+          Si tu inmueble no aparece aquí, cuéntanos el tipo de propiedad que
+          quieres vender.
+        </p>
+      </div>
+
+      <div class="proceso__steps">
+        <div *ngFor="let step of steps" class="proceso__step">
+          <div class="proceso__step-icon">
+            <img src="assets/icons/maps-home-work.svg" alt="" aria-hidden="true" />
+          </div>
+          <div class="proceso__step-body">
+            <h3 class="proceso__step-title">{{ step.title }}</h3>
+            <p class="proceso__step-desc">{{ step.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

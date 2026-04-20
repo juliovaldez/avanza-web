@@ -1,0 +1,115 @@
+$p-50:  #f7f6ef;
+$p-100: #ece7d5;
+$p-200: #dbd1ad;
+$p-500: #a7864c;
+$p-700: #735335;
+$p-950: #301f18;
+
+.servicios {
+  padding: 32px 80px;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 52px;
+    color: $p-950;
+    text-align: center;
+    margin: 0;
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: stretch;
+  }
+
+  &__card {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid $p-100;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  &__card-image {
+    background: $p-200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+    }
+  }
+
+  &__card-body {
+    background: $p-50;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 16px 32px;
+    flex: 1;
+  }
+
+  &__card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 16px;
+    color: $p-950;
+  }
+
+  &__card-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 40px;
+    margin: 0;
+  }
+
+  &__card-desc {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    margin: 0;
+  }
+
+  &__card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    background: $p-500;
+    border: 1px solid $p-700;
+    border-radius: 100px;
+    padding: 9px 17px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: $p-700;
+    }
+  }
+}

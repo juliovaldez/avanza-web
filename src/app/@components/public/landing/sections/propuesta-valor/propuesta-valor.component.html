@@ -1,0 +1,42 @@
+<section class="propuesta">
+  <div class="propuesta__inner">
+    <div class="propuesta__gallery">
+      <div class="propuesta__gallery-left">
+        <div class="propuesta__photo propuesta__photo--tall">
+          <img src="assets/images/propuesta-1.png" alt="Propuesta valor" />
+        </div>
+      </div>
+      <div class="propuesta__gallery-right">
+        <div class="propuesta__photo">
+          <img src="assets/images/propuesta-2.png" alt="Propuesta valor" />
+        </div>
+        <div class="propuesta__photo">
+          <img src="assets/images/propuesta-3.png" alt="Propuesta valor" />
+        </div>
+      </div>
+    </div>
+
+    <div class="propuesta__body">
+      <h2 class="propuesta__title">
+        En Avanza Nexa, hacemos que vender tu casa sea rápido, seguro y sin
+        complicaciones
+      </h2>
+      <p class="propuesta__desc">
+        Revisamos tu propiedad, diseñamos una oferta justa y competitiva y te
+        acompañamos en todo el proceso hasta que recibas tu dinero.
+      </p>
+
+      <ul class="propuesta__features">
+        <li *ngFor="let f of features" class="propuesta__feature">
+          <span class="propuesta__feature-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="10" r="10" fill="#a7864c"/>
+              <path d="M6 10.5l2.5 2.5 5.5-5.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span>{{ f }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

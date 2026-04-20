@@ -1,0 +1,20 @@
+<section class="casos">
+  <div class="casos__inner">
+    <h2 class="casos__title">Nuestros casos de éxito</h2>
+
+    <div class="casos__grid">
+      <div *ngFor="let caso of casos" class="casos__card">
+        <div class="casos__card-image">
+          <img *ngIf="caso.fotografia; else imgPlaceholder" [src]="caso.fotografia" [alt]="caso.titulo" />
+          <ng-template #imgPlaceholder>
+            <div class="casos__card-placeholder"></div>
+          </ng-template>
+        </div>
+        <div class="casos__card-body">
+          <h3 class="casos__card-title">{{ caso.titulo }}</h3>
+          <p class="casos__card-desc">{{ caso.descripcion }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

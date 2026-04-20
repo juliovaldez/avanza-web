@@ -1,0 +1,38 @@
+<section class="testimonios">
+  <div class="testimonios__inner">
+    <h2 class="testimonios__title">Clientes que confían en nosotros</h2>
+
+    <div class="testimonios__grid">
+      <div *ngFor="let t of testimonios" class="testimonios__card">
+
+        <div class="testimonios__card-header">
+          <div class="testimonios__avatar">
+            <img
+              *ngIf="t.fotografia; else avatarPlaceholder"
+              [src]="t.fotografia"
+              [alt]="t.nombre_completo"
+            />
+            <ng-template #avatarPlaceholder>
+              <img
+                src="assets/icons/testimonio-avatar-placeholder.svg"
+                alt="Avatar"
+                width="60"
+                height="60"
+              />
+            </ng-template>
+          </div>
+          <div class="testimonios__card-info">
+            <p class="testimonios__nombre">{{ t.nombre_completo }}</p>
+            <p class="testimonios__ubicacion">{{ t.ciudad }}, {{ t.estado }}</p>
+          </div>
+        </div>
+
+        <div class="testimonios__card-body">
+          <p class="testimonios__verified">Cliente verificado</p>
+          <p class="testimonios__texto">{{ t.descripcion }}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,67 @@
+<div class="card-flex-box contacto-admin">
+  <div class="contacto-admin__header">
+    <h2 class="contacto-admin__title">Configuración de Contacto</h2>
+  </div>
+
+  <dx-load-indicator [visible]="loading"></dx-load-indicator>
+
+  <dx-form
+    *ngIf="!loading"
+    #form
+    [formData]="formData"
+    [colCount]="2"
+    validationGroup="contactoForm"
+  >
+    <dxi-item
+      dataField="correo"
+      editorType="dxTextBox"
+      [colSpan]="2"
+      [label]="{ text: 'Correo electrónico' }"
+      [editorOptions]="{ mode: 'email' }"
+    >
+      <dxi-validation-rule type="required" message="Requerido"></dxi-validation-rule>
+      <dxi-validation-rule type="email" message="Correo inválido"></dxi-validation-rule>
+    </dxi-item>
+
+    <dxi-item
+      dataField="whatsapp"
+      editorType="dxTextBox"
+      [colSpan]="2"
+      [label]="{ text: 'WhatsApp (número con código de país)' }"
+      [editorOptions]="{ placeholder: 'Ej: 524778938183' }"
+    >
+      <dxi-validation-rule type="required" message="Requerido"></dxi-validation-rule>
+    </dxi-item>
+
+    <dxi-item
+      dataField="facebook"
+      editorType="dxTextBox"
+      [label]="{ text: 'Facebook (URL)' }"
+      [editorOptions]="{ placeholder: 'https://facebook.com/...' }"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="instagram"
+      editorType="dxTextBox"
+      [label]="{ text: 'Instagram (URL)' }"
+      [editorOptions]="{ placeholder: 'https://instagram.com/...' }"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="tiktok"
+      editorType="dxTextBox"
+      [colSpan]="2"
+      [label]="{ text: 'TikTok (URL)' }"
+      [editorOptions]="{ placeholder: 'https://tiktok.com/...' }"
+    ></dxi-item>
+  </dx-form>
+
+  <div class="contacto-admin__actions" *ngIf="!loading">
+    <span class="contacto-admin__saved" *ngIf="saved">✓ Guardado correctamente</span>
+    <dx-button
+      text="Guardar cambios"
+      type="default"
+      (onClick)="save()"
+    ></dx-button>
+  </div>
+</div>

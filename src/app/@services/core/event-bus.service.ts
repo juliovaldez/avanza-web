@@ -33,4 +33,10 @@ export enum EventTypes {
   group_added = "group_added",
   group_updated = "group_updated",
   group_deleted = "group_deleted",
+  testimonio_added = "testimonio_added",
+  testimonio_updated = "testimonio_updated",
+  testimonio_deleted = "testimonio_deleted",
+  caso_exito_added = "caso_exito_added",
+  caso_exito_updated = "caso_exito_updated",
+  caso_exito_deleted = "caso_exito_deleted",
 }

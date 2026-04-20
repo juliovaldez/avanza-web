@@ -1,0 +1,94 @@
+<footer class="public-footer">
+  <div class="public-footer__container">
+
+    <!-- Columnas de enlaces -->
+    <div class="public-footer__links">
+
+      <!-- Vende -->
+      <div class="public-footer__col">
+        <span class="public-footer__col-title">Vende</span>
+        <ul class="public-footer__col-list">
+          <li><a routerLink="/vende/agenda-cita" class="public-footer__link">Agenda una cita</a></li>
+          <li><a routerLink="/vende/cotiza" class="public-footer__link">Cotiza en línea</a></li>
+          <li><a routerLink="/vende/propiedades" class="public-footer__link">Propiedades disponibles</a></li>
+        </ul>
+      </div>
+
+      <!-- Compra -->
+      <div class="public-footer__col">
+        <span class="public-footer__col-title">Compra</span>
+        <ul class="public-footer__col-list">
+          <li><a routerLink="/compra/propiedades" class="public-footer__link">Propiedades disponibles</a></li>
+        </ul>
+      </div>
+
+      <!-- Avanza -->
+      <div class="public-footer__col">
+        <span class="public-footer__col-title">Avanza</span>
+        <ul class="public-footer__col-list">
+          <li><a routerLink="/quienes-somos" class="public-footer__link">Sobre nosotros</a></li>
+          <li><a routerLink="/equipo" class="public-footer__link">Equipo</a></li>
+          <li>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="public-footer__link public-footer__link--external">
+              Blog
+              <img src="assets/images/arrow-outward.svg" alt="" aria-hidden="true" class="public-footer__external-icon" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="public-footer__col">
+        <span class="public-footer__col-title">Legal</span>
+        <ul class="public-footer__col-list">
+          <li><a routerLink="/aviso-privacidad" class="public-footer__link">Aviso de privacidad</a></li>
+          <li><a routerLink="/terminos-condiciones" class="public-footer__link">Términos y condiciones</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Columna derecha: Ayuda + Contacto -->
+    <div class="public-footer__contact">
+
+      <div class="public-footer__col">
+        <span class="public-footer__col-title">Ayuda</span>
+        <ul class="public-footer__col-list">
+          <li><a routerLink="/preguntas-frecuentes" class="public-footer__link">Preguntas frecuentes</a></li>
+          <li><a routerLink="/soporte" class="public-footer__link">Soporte</a></li>
+          <li>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="public-footer__link public-footer__link--external">
+              Horarios de atención
+              <img src="assets/images/arrow-outward.svg" alt="" aria-hidden="true" class="public-footer__external-icon" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="public-footer__col">
+        <span class="public-footer__col-title">Horario de atención WhatsApp</span>
+        <p class="public-footer__text">Lunes a sábado 24 horas</p>
+        <a
+          *ngIf="contacto?.whatsapp"
+          [href]="contacto!.whatsappUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="public-footer__whatsapp"
+        >
+          <img src="assets/images/whatsapp.svg" alt="WhatsApp" class="public-footer__whatsapp-icon" />
+          <span>{{ contacto!.whatsapp }}</span>
+        </a>
+      </div>
+
+      <div class="public-footer__col">
+        <span class="public-footer__col-title">Dirección de oficinas</span>
+        <p class="public-footer__text">
+          Calle 5 de Febrero, Núm. 424B,<br />
+          Centro, León, Guanajuato.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</footer>

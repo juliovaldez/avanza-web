@@ -1,0 +1,125 @@
+$p-300: #c6b27e;
+$p-500: #a7864c;
+$p-700: #735335;
+$p-950: #301f18;
+
+.hero {
+  padding: 32px 80px;
+
+  &__card {
+    background: $p-300;
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 452px;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 52px;
+    color: $p-950;
+    margin: 0;
+  }
+
+  &__terms {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: $p-950;
+    margin: 0;
+  }
+
+  &__description,
+  &__tagline {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: $p-950;
+    margin: 0;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 13px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__search-icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  &__search-field {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #212529;
+    background: transparent;
+
+    &::placeholder {
+      color: #212529;
+    }
+  }
+
+  &__search-btn {
+    background: $p-500;
+    border: 1px solid $p-700;
+    border-radius: 4px;
+    padding: 5px 9px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #fff;
+    white-space: nowrap;
+    text-decoration: none;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: $p-700;
+    }
+  }
+
+  &__image {
+    flex: 1;
+    min-width: 400px;
+    aspect-ratio: 564 / 415;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+  }
+}
