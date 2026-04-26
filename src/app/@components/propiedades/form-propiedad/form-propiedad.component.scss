@@ -1,0 +1,86 @@
+.prop-form {
+  padding: 24px;
+  max-width: 960px;
+
+  &__header {
+    margin-bottom: 28px;
+  }
+
+  &__title {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0 0 4px;
+  }
+
+  &__subtitle {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e5e5;
+  }
+}
+
+// ── Secciones ──────────────────────────────────────────────────────────────
+
+.prop-section {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 20px 24px 24px;
+  margin-bottom: 20px;
+
+  &__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 16px 20px;
+  }
+}
+
+.prop-grid--2 { grid-template-columns: repeat(2, 1fr); }
+.prop-grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+// ── Campos ─────────────────────────────────────────────────────────────────
+
+.prop-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &--span2 {
+    grid-column: 1 / -1;
+  }
+
+  &__label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #444;
+  }
+}
+
+// ── Responsive ─────────────────────────────────────────────────────────────
+
+@media (max-width: 700px) {
+  .prop-grid--2,
+  .prop-grid--3 {
+    grid-template-columns: 1fr;
+  }
+  .prop-field--span2 {
+    grid-column: 1;
+  }
+}

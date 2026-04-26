@@ -1,4 +1,75 @@
 export enum PERMISSIONS {
+// Catálogos de Propiedad
+catalogs_view_tipopropiedad   = 'catalogs.view_tipopropiedad',
+catalogs_add_tipopropiedad    = 'catalogs.add_tipopropiedad',
+catalogs_change_tipopropiedad = 'catalogs.change_tipopropiedad',
+catalogs_delete_tipopropiedad = 'catalogs.delete_tipopropiedad',
+
+// Propiedades
+propiedades_view_propiedad   = 'propiedades.view_propiedad',
+propiedades_add_propiedad    = 'propiedades.add_propiedad',
+propiedades_change_propiedad = 'propiedades.change_propiedad',
+propiedades_delete_propiedad = 'propiedades.delete_propiedad',
+
+// Catálogos de Documentación
+catalogs_view_documentopropiedad   = 'catalogs.view_documentopropiedad',
+catalogs_add_documentopropiedad    = 'catalogs.add_documentopropiedad',
+catalogs_change_documentopropiedad = 'catalogs.change_documentopropiedad',
+catalogs_delete_documentopropiedad = 'catalogs.delete_documentopropiedad',
+
+catalogs_view_predial              = 'catalogs.view_predial',
+catalogs_add_predial               = 'catalogs.add_predial',
+catalogs_change_predial            = 'catalogs.change_predial',
+catalogs_delete_predial            = 'catalogs.delete_predial',
+
+catalogs_view_servicioscorriente   = 'catalogs.view_servicioscorriente',
+catalogs_add_servicioscorriente    = 'catalogs.add_servicioscorriente',
+catalogs_change_servicioscorriente = 'catalogs.change_servicioscorriente',
+catalogs_delete_servicioscorriente = 'catalogs.delete_servicioscorriente',
+
+catalogs_view_gravamen             = 'catalogs.view_gravamen',
+catalogs_add_gravamen              = 'catalogs.add_gravamen',
+catalogs_change_gravamen           = 'catalogs.change_gravamen',
+catalogs_delete_gravamen           = 'catalogs.delete_gravamen',
+
+catalogs_view_situacionlegal       = 'catalogs.view_situacionlegal',
+catalogs_add_situacionlegal        = 'catalogs.add_situacionlegal',
+catalogs_change_situacionlegal     = 'catalogs.change_situacionlegal',
+catalogs_delete_situacionlegal     = 'catalogs.delete_situacionlegal',
+
+// Catálogos de Calidad
+catalogs_view_calidadconstruccion   = 'catalogs.view_calidadconstruccion',
+catalogs_add_calidadconstruccion    = 'catalogs.add_calidadconstruccion',
+catalogs_change_calidadconstruccion = 'catalogs.change_calidadconstruccion',
+catalogs_delete_calidadconstruccion = 'catalogs.delete_calidadconstruccion',
+
+catalogs_view_estadoconservacion    = 'catalogs.view_estadoconservacion',
+catalogs_add_estadoconservacion     = 'catalogs.add_estadoconservacion',
+catalogs_change_estadoconservacion  = 'catalogs.change_estadoconservacion',
+catalogs_delete_estadoconservacion  = 'catalogs.delete_estadoconservacion',
+
+catalogs_view_tipoacabado           = 'catalogs.view_tipoacabado',
+catalogs_add_tipoacabado            = 'catalogs.add_tipoacabado',
+catalogs_change_tipoacabado         = 'catalogs.change_tipoacabado',
+catalogs_delete_tipoacabado         = 'catalogs.delete_tipoacabado',
+
+catalogs_view_mantenimiento         = 'catalogs.view_mantenimiento',
+catalogs_add_mantenimiento          = 'catalogs.add_mantenimiento',
+catalogs_change_mantenimiento       = 'catalogs.change_mantenimiento',
+catalogs_delete_mantenimiento       = 'catalogs.delete_mantenimiento',
+
+catalogs_view_equipamiento          = 'catalogs.view_equipamiento',
+catalogs_add_equipamiento           = 'catalogs.add_equipamiento',
+catalogs_change_equipamiento        = 'catalogs.change_equipamiento',
+catalogs_delete_equipamiento        = 'catalogs.delete_equipamiento',
+
+// Sepomex
+sepomex_view_estado = 'sepomex.view_estado',
+sepomex_view_municipio = 'sepomex.view_municipio',
+sepomex_view_asentamiento = 'sepomex.view_asentamiento',
+sepomex_view_cargasepomex = 'sepomex.view_cargasepomex',
+sepomex_add_cargasepomex = 'sepomex.add_cargasepomex',
+
 // Contacto
 contacto_view_contactoconfig = 'contacto.view_contactoconfig',
 contacto_add_contactoconfig = 'contacto.add_contactoconfig',
@@ -21,52 +92,6 @@ users_view_user = 'users.view_user',
 users_add_user = 'users.add_user',
 users_change_user = 'users.change_user',
 users_delete_user = 'users.delete_user',
-
-// Inventory (ordenado por el último valor)
-inventory_add_asset = 'inventory.add_asset',
-inventory_change_asset = 'inventory.change_asset',
-inventory_delete_asset = 'inventory.delete_asset',
-inventory_view_asset = 'inventory.view_asset',
-
-inventory_add_barcode = 'inventory.add_barcode',
-inventory_change_barcode = 'inventory.change_barcode',
-inventory_delete_barcode = 'inventory.delete_barcode',
-inventory_view_barcode = 'inventory.view_barcode',
-
-inventory_add_batch = 'inventory.add_batch',
-inventory_change_batch = 'inventory.change_batch',
-inventory_delete_batch = 'inventory.delete_batch',
-inventory_view_batch = 'inventory.view_batch',
-
-inventory_add_catalog = 'inventory.add_catalog',
-inventory_change_catalog = 'inventory.change_catalog',
-inventory_delete_catalog = 'inventory.delete_catalog',
-inventory_view_catalog = 'inventory.view_catalog',
-
-inventory_add_ingress = 'inventory.add_ingress',
-inventory_change_ingress = 'inventory.change_ingress',
-inventory_delete_ingress = 'inventory.delete_ingress',
-inventory_view_ingress = 'inventory.view_ingress',
-
-inventory_add_material = 'inventory.add_material',
-inventory_change_material = 'inventory.change_material',
-inventory_delete_material = 'inventory.delete_material',
-inventory_view_material = 'inventory.view_material',
-
-inventory_add_status = 'inventory.add_status',
-inventory_change_status = 'inventory.change_status',
-inventory_delete_status = 'inventory.delete_status',
-inventory_view_status = 'inventory.view_status',
-
-inventory_add_unit = 'inventory.add_unit',
-inventory_change_unit = 'inventory.change_unit',
-inventory_delete_unit = 'inventory.delete_unit',
-inventory_view_unit = 'inventory.view_unit',
-
-inventory_add_unitconversion = 'inventory.add_unitconversion',
-inventory_change_unitconversion = 'inventory.change_unitconversion',
-inventory_delete_unitconversion = 'inventory.delete_unitconversion',
-inventory_view_unitconversion = 'inventory.view_unitconversion',
 
 // Auth (ordenado por el último valor)
 auth_add_group = 'auth.add_group',

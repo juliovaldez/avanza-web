@@ -26,9 +26,6 @@ import {
 import CustomStore from "devextreme/data/custom_store";
 import { Subject, Subscription, takeUntil } from "rxjs";
 import { FormUserComponent } from "@components/users/form-user/form-user.component";
-import { InventoryProfileComponent } from "@components/users/inventory-profile/inventory-profile.component";
-import { FiberGoProfileComponent } from "@components/users/fibergo-profile/fibergo-profile.component";
-
 import { LazyComponent } from "@components/base";
 import { users_list } from "@components/widget.types";
 
@@ -109,27 +106,8 @@ export class ListUsersComponent
           caption: "Roles",
           cellTemplate: "groups_template",
         },
-        {
-          dataField: "inventory_profile.location_name",
-          caption: "Ubicación",
-        },
       ],
-      buttons: [
-        {
-          hint: "Perfil Inventario",
-          icon: "chart",
-          visible: true,
-          disabled: false,
-          onClick: (e: any) => this.loadInventoryProfile(e.row.data),
-        },
-        {
-          hint: "Perfil Orbit",
-          icon: "globe",
-          visible: true,
-          disabled: false,
-          onClick: (e: any) => this.loadFiberGoProfile(e.row.data),
-        },
-      ],
+      buttons: [],
       paging: {
         pageSize: 5,
         pageIndex: 0,
@@ -212,27 +190,6 @@ export class ListUsersComponent
     });
   }
 
-  async loadInventoryProfile(user: User) {
-    await this.lazyLoadService.load({
-      component_name: lazyWidgets.inventory_profile,
-      container: this.lazyContainer,
-      data: {
-        model: user,
-        config: { onPopup: true },
-      },
-    });
-  }
-
-  async loadFiberGoProfile(user: User) {
-    await this.lazyLoadService.load({
-      component_name: lazyWidgets.fibergo_profile,
-      container: this.lazyContainer,
-      data: {
-        model: user,
-        config: { onPopup: true },
-      },
-    });
-  }
   onSelectionChanged(e: any) {
     this.eventBusService.emit(EventTypes.user_selected, e.selectedRowsData);
   }

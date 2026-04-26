@@ -9,8 +9,6 @@ import type {
   group_form,
   permissions_list,
   permission_form,
-  inventory_profile,
-  fibergo_profile,
 } from "@components/widget.types";
 
 type RequireAllKeys<T extends Record<lazyWidgets, any>> = {
@@ -24,8 +22,6 @@ export type WidgetDataMap = RequireAllKeys<{
   [lazyWidgets.group_form]: group_form;
   [lazyWidgets.permissions_list]: permissions_list;
   [lazyWidgets.permission_form]: permission_form;
-  [lazyWidgets.inventory_profile]: inventory_profile;
-  [lazyWidgets.fibergo_profile]: fibergo_profile;
 }>;
 
 export const lazyWidgetsRootObj: Record<lazyWidgets, () => Promise<Type<any>>> =
@@ -42,14 +38,6 @@ export const lazyWidgetsRootObj: Record<lazyWidgets, () => Promise<Type<any>>> =
       import("../../@components").then((m) => m.ListPermissionsComponent),
     [lazyWidgets.permission_form]: () =>
       import("../../@components").then((m) => m.FormPermissionComponent),
-    [lazyWidgets.inventory_profile]: () =>
-      import("../../@components/users/inventory-profile/inventory-profile.component").then(
-        (m) => m.InventoryProfileComponent
-      ),
-    [lazyWidgets.fibergo_profile]: () =>
-      import("../../@components/users/fibergo-profile/fibergo-profile.component").then(
-        (m) => m.FiberGoProfileComponent
-      ),
   };
 
 export const LAZY_WIDGETS_ROOT = new InjectionToken<typeof lazyWidgetsRootObj>(

@@ -1,0 +1,116 @@
+<div class="sepomex">
+  <h2 class="sepomex__title">Actualización SEPOMEX</h2>
+
+  <dx-tab-panel [animationEnabled]="false">
+    <!-- ── Tab 1: Cargar XML ─────────────────────────────────────────── -->
+    <dxi-item title="Cargar XML" icon="upload">
+      <div class="sepomex__upload">
+        <p class="sepomex__upload-hint">
+          Selecciona el archivo XML oficial de SEPOMEX para importar Estados,
+          Municipios y Códigos Postales.
+        </p>
+
+        <dx-file-uploader
+          [multiple]="false"
+          accept=".xml"
+          uploadMode="useForm"
+          (onValueChanged)="onFileSelected($event)"
+          labelText="o arrastra el archivo aquí"
+          selectButtonText="Seleccionar XML">
+        </dx-file-uploader>
+
+        <dx-button
+          text="Importar"
+          type="default"
+          stylingMode="contained"
+          icon="upload"
+          [disabled]="!archivoSeleccionado || uploading"
+          (onClick)="subirArchivo()">
+        </dx-button>
+
+        <dx-load-indicator [visible]="uploading"></dx-load-indicator>
+
+        <!-- Estado de la última carga -->
+        <div *ngIf="ultimaCarga" class="sepomex__status" [class]="'sepomex__status--' + ultimaCarga.estado_proceso">
+          <div class="sepomex__status-row">
+            <span class="sepomex__status-label">{{ estadoLabel }}</span>
+            <span class="sepomex__status-file">{{ ultimaCarga.nombre_archivo }}</span>
+          </div>
+
+          <div *ngIf="ultimaCarga.estado_proceso === 'procesando'" class="sepomex__progress">
+            <dx-progress-bar
+              [min]="0"
+              [max]="100"
+              [value]="ultimaCarga.progreso"
+              [showStatus]="false">
+            </dx-progress-bar>
+            <span class="sepomex__progress-text">
+              {{ ultimaCarga.registros_procesados | number }} / {{ ultimaCarga.total_registros | number }} registros
+            </span>
+          </div>
+
+          <p *ngIf="ultimaCarga.mensaje" class="sepomex__status-msg">{{ ultimaCarga.mensaje }}</p>
+        </div>
+      </div>
+    </dxi-item>
+
+    <!-- ── Tab 2: Explorar datos ─────────────────────────────────────── -->
+    <dxi-item title="Explorar datos" icon="search">
+      <div class="sepomex__explorer">
+        <!-- Filtros -->
+        <div class="sepomex__filters">
+          <dx-select-box
+            class="sepomex__filter-item"
+            [dataSource]="estados"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Estado"
+            [showClearButton]="true"
+            (onValueChanged)="onEstadoChange($event)">
+          </dx-select-box>
+
+          <dx-select-box
+            class="sepomex__filter-item"
+            [dataSource]="municipios"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Municipio"
+            [showClearButton]="true"
+            [disabled]="!estadoFiltro"
+            (onValueChanged)="onMunicipioChange($event)">
+          </dx-select-box>
+
+          <dx-text-box
+            class="sepomex__filter-item sepomex__filter-item--cp"
+            placeholder="Código Postal"
+            [showClearButton]="true"
+            (onValueChanged)="onCpChange($event)">
+          </dx-text-box>
+        </div>
+
+        <!-- Grid -->
+        <dx-data-grid
+          [dataSource]="asentamientosDS"
+          [remoteOperations]="{ paging: true, sorting: true }"
+          [showBorders]="true"
+          [rowAlternationEnabled]="true"
+          [allowColumnResizing]="true"
+          [wordWrapEnabled]="false"
+          height="520">
+
+          <dxo-paging [pageSize]="20"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[20, 50, 100]" [showInfo]="true"></dxo-pager>
+          <dxo-search-panel [visible]="false"></dxo-search-panel>
+          <dxo-header-filter [visible]="false"></dxo-header-filter>
+
+          <dxi-column dataField="codigo_postal" caption="CP" [width]="90"></dxi-column>
+          <dxi-column dataField="nombre" caption="Colonia/Asentamiento"></dxi-column>
+          <dxi-column dataField="tipo" caption="Tipo" [width]="140"></dxi-column>
+          <dxi-column dataField="zona" caption="Zona" [width]="100"></dxi-column>
+          <dxi-column dataField="municipio_nombre" caption="Municipio"></dxi-column>
+          <dxi-column dataField="estado_nombre" caption="Estado"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </dxi-item>
+  </dx-tab-panel>
+</div>

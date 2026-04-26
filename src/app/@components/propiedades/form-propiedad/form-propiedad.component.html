@@ -1,0 +1,337 @@
+<div class="prop-form">
+
+  <!-- Header -->
+  <div class="prop-form__header">
+    <h2 class="prop-form__title">
+      {{ isEdit ? 'Editar Propiedad' : 'Nueva Propiedad' }}
+    </h2>
+    <p class="prop-form__subtitle">
+      {{ isEdit ? 'Modifica los datos de la propiedad.' : 'Completa la información de la nueva propiedad.' }}
+    </p>
+  </div>
+
+  <dx-load-indicator [visible]="loading" height="40" width="40"></dx-load-indicator>
+
+  <ng-container *ngIf="!loading">
+
+    <!-- ── Sección 1: Información General ─────────────────────────────── -->
+    <div class="prop-section">
+      <h3 class="prop-section__title">Información General</h3>
+      <div class="prop-section__grid prop-grid--2">
+
+        <div class="prop-field">
+          <label class="prop-field__label">Tipo de Propiedad</label>
+          <dx-select-box
+            [(value)]="formData.tipo_propiedad"
+            [dataSource]="tiposPropiedadDS"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Seleccionar tipo..."
+            [showClearButton]="true">
+          </dx-select-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Precio</label>
+          <dx-number-box
+            [(value)]="formData.precio"
+            [format]="precioFormat"
+            [min]="0"
+            placeholder="$0">
+          </dx-number-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Metros de Terreno</label>
+          <dx-number-box
+            [(value)]="formData.metros_terreno"
+            [min]="0"
+            placeholder="m²">
+          </dx-number-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Metros de Construcción</label>
+          <dx-number-box
+            [(value)]="formData.metros_construccion"
+            [min]="0"
+            placeholder="m²">
+          </dx-number-box>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Sección 2: Características ────────────────────────────────── -->
+    <div class="prop-section">
+      <h3 class="prop-section__title">Características</h3>
+      <div class="prop-section__grid prop-grid--3">
+
+        <div class="prop-field">
+          <label class="prop-field__label">Habitaciones</label>
+          <dx-number-box [(value)]="formData.habitaciones" [min]="0" [max]="20" [showSpinButtons]="true"></dx-number-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Baños</label>
+          <dx-number-box [(value)]="formData.banos" [min]="0" [max]="20" [showSpinButtons]="true"></dx-number-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Medio Baño</label>
+          <dx-number-box [(value)]="formData.medio_bano" [min]="0" [max]="10" [showSpinButtons]="true"></dx-number-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Niveles</label>
+          <dx-number-box [(value)]="formData.niveles" [min]="0" [max]="20" [showSpinButtons]="true"></dx-number-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Cochera</label>
+          <dx-number-box [(value)]="formData.cochera" [min]="0" [max]="10" [showSpinButtons]="true"></dx-number-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Antigüedad (años)</label>
+          <dx-number-box [(value)]="formData.antiguedad" [min]="0" [max]="200" [showSpinButtons]="true"></dx-number-box>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Sección 3: Calidad y Acabados ──────────────────────────────── -->
+    <div class="prop-section">
+      <h3 class="prop-section__title">Calidad y Acabados</h3>
+      <div class="prop-section__grid prop-grid--2">
+
+        <div class="prop-field">
+          <label class="prop-field__label">Calidad de Construcción</label>
+          <dx-select-box
+            [(value)]="formData.calidad_construccion"
+            [dataSource]="calidadDS"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Seleccionar..."
+            [showClearButton]="true">
+          </dx-select-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Estado de Conservación</label>
+          <dx-select-box
+            [(value)]="formData.estado_conservacion"
+            [dataSource]="estadoConservacionDS"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Seleccionar..."
+            [showClearButton]="true">
+          </dx-select-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Tipo de Acabado</label>
+          <dx-select-box
+            [(value)]="formData.tipo_acabado"
+            [dataSource]="tipoAcabadoDS"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Seleccionar..."
+            [showClearButton]="true">
+          </dx-select-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Mantenimiento mensual</label>
+          <dx-number-box
+            [(value)]="formData.mantenimiento"
+            [min]="0"
+            [format]="precioFormat"
+            placeholder="$0">
+          </dx-number-box>
+        </div>
+
+        <div class="prop-field prop-field--span2">
+          <label class="prop-field__label">Equipamiento</label>
+          <dx-tag-box
+            [(value)]="formData.equipamiento"
+            [dataSource]="equipamientoDS"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Seleccionar equipamiento..."
+            [showSelectionControls]="true"
+            applyValueMode="useButtons"
+            [multiline]="true">
+          </dx-tag-box>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Sección 4: Ubicación ──────────────────────────────────────── -->
+    <div class="prop-section">
+      <h3 class="prop-section__title">Ubicación</h3>
+      <div class="prop-section__grid prop-grid--3">
+
+        <!-- Fila 1: Estado | Municipio | CP -->
+        <div class="prop-field">
+          <label class="prop-field__label">Estado</label>
+          <dx-select-box
+            [(value)]="estadoIdSeleccionado"
+            [dataSource]="estados"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Seleccionar estado..."
+            [showClearButton]="true"
+            [disabled]="estadosCargando"
+            (onValueChanged)="onEstadoChange($event.value)">
+          </dx-select-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">
+            Municipio
+            <span *ngIf="municipiosCargando" class="prop-field__hint"> — cargando...</span>
+          </label>
+          <dx-select-box
+            [(value)]="municipioIdSeleccionado"
+            [dataSource]="municipios"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Selecciona un estado primero..."
+            [showClearButton]="true"
+            [disabled]="municipios.length === 0"
+            (onValueChanged)="onMunicipioChange($event.value)">
+          </dx-select-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Código Postal</label>
+          <dx-text-box
+            [(value)]="cp"
+            placeholder="Ej. 64000  (alternativa)"
+            [maxLength]="5"
+            (onValueChanged)="onCPChange($event.value)">
+          </dx-text-box>
+        </div>
+
+        <!-- Fila 2: Colonia (span2) | Ciudad -->
+        <div class="prop-field prop-field--span2">
+          <label class="prop-field__label">
+            Colonia
+            <span *ngIf="coloniasCargando" class="prop-field__hint"> — cargando...</span>
+            <span *ngIf="!coloniasCargando && colonias.length === 0 && (municipioIdSeleccionado || cp.length === 5)" class="prop-field__hint"> — sin resultados</span>
+          </label>
+          <dx-select-box
+            [value]="formData.asentamiento"
+            [dataSource]="colonias"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Selecciona municipio o CP primero..."
+            [showClearButton]="true"
+            [disabled]="colonias.length === 0"
+            [searchEnabled]="true"
+            (onValueChanged)="onColoniaChange($event.value)">
+          </dx-select-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Ciudad</label>
+          <dx-text-box
+            [value]="ciudadDisplay"
+            [readOnly]="true"
+            placeholder="—">
+          </dx-text-box>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Sección 5: Documentación Legal ────────────────────────────── -->
+    <div class="prop-section">
+      <h3 class="prop-section__title">Documentación Legal</h3>
+      <div class="prop-section__grid prop-grid--2">
+
+        <div class="prop-field">
+          <label class="prop-field__label">Documentos de la Propiedad</label>
+          <dx-select-box
+            [(value)]="formData.documento_propiedad"
+            [dataSource]="documentoDS"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Seleccionar..."
+            [showClearButton]="true">
+          </dx-select-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Predial</label>
+          <dx-select-box
+            [(value)]="formData.predial"
+            [dataSource]="predialDS"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Seleccionar..."
+            [showClearButton]="true">
+          </dx-select-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Servicios al Corriente</label>
+          <dx-select-box
+            [(value)]="formData.servicios_corriente"
+            [dataSource]="serviciosDS"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Seleccionar..."
+            [showClearButton]="true">
+          </dx-select-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Gravamen</label>
+          <dx-select-box
+            [(value)]="formData.gravamen"
+            [dataSource]="gravamenDS"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Seleccionar..."
+            [showClearButton]="true">
+          </dx-select-box>
+        </div>
+
+        <div class="prop-field">
+          <label class="prop-field__label">Situación Legal</label>
+          <dx-select-box
+            [(value)]="formData.situacion_legal"
+            [dataSource]="situacionLegalDS"
+            displayExpr="nombre"
+            valueExpr="id"
+            placeholder="Seleccionar..."
+            [showClearButton]="true">
+          </dx-select-box>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Acciones ────────────────────────────────────────────────────── -->
+    <div class="prop-form__actions">
+      <dx-button
+        text="Cancelar"
+        type="normal"
+        stylingMode="outlined"
+        (onClick)="cancelar()">
+      </dx-button>
+      <dx-button
+        [text]="isEdit ? 'Guardar cambios' : 'Crear propiedad'"
+        type="default"
+        stylingMode="contained"
+        icon="save"
+        [disabled]="saving"
+        (onClick)="guardar()">
+      </dx-button>
+    </div>
+
+  </ng-container>
+</div>

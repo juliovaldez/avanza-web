@@ -28,58 +28,99 @@ export const navigation = [
       },
       {
         text: "Ubicaciones",
-        path: "/home/locations",
+        path: "/home/sepomex",
         data: {
-          permissions: [PERMISSIONS.auth_view_group],
-        },
-      },
-      {
-        text: "Tipo Txn",
-        path: "/home/transaction-types",
-        data: {
-          permissions: [PERMISSIONS.auth_view_group],
+          permissions: [PERMISSIONS.sepomex_view_cargasepomex],
         },
       },
     ],
   },
   {
-    text: "Catalogs",
-    icon: "folder",
+    text: "Estructura",
+    icon: "fields",
     items: [
       {
-        text: "Unidades",
-        path: "/home/units",
-        data: {
-          permissions: [PERMISSIONS.inventory_view_unit],
-        },
+        text: "Tipo de Propiedad",
+        path: "/home/catalogo/tipo-propiedad",
+        data: { permissions: [PERMISSIONS.catalogs_view_tipopropiedad] },
+      },
+    ],
+  },
+  {
+    text: "Propiedades",
+    icon: "home",
+    items: [
+      {
+        text: "Nueva Propiedad",
+        path: "/home/propiedades/nueva",
+        data: { permissions: [PERMISSIONS.propiedades_add_propiedad] },
       },
       {
-        text: "Status",
-        path: "/home/status",
-        data: {
-          permissions: [PERMISSIONS.inventory_view_status],
-        },
+        text: "Listado",
+        path: "/home/propiedades",
+        data: { permissions: [PERMISSIONS.propiedades_view_propiedad] },
+      },
+    ],
+  },
+  {
+    text: "Documentación",
+    icon: "doc",
+    items: [
+      {
+        text: "Documentos de la Propiedad",
+        path: "/home/documentacion/documento-propiedad",
+        data: { permissions: [PERMISSIONS.catalogs_view_documentopropiedad] },
       },
       {
-        text: "Materials",
-        path: "/home/materials",
-        data: {
-          permissions: [PERMISSIONS.inventory_view_material],
-        },
+        text: "Predial",
+        path: "/home/documentacion/predial",
+        data: { permissions: [PERMISSIONS.catalogs_view_predial] },
       },
       {
-        text: "Conversiones",
-        path: "/home/unit-conversions",
-        data: {
-          permissions: [PERMISSIONS.inventory_view_unitconversion],
-        },
+        text: "Servicios al Corriente",
+        path: "/home/documentacion/servicios-corriente",
+        data: { permissions: [PERMISSIONS.catalogs_view_servicioscorriente] },
       },
       {
-        text: "Kits",
-        path: "/home/kits",
-        data: {
-          permissions: [PERMISSIONS.inventory_view_barcode],
-        },
+        text: "Gravamen",
+        path: "/home/documentacion/gravamen",
+        data: { permissions: [PERMISSIONS.catalogs_view_gravamen] },
+      },
+      {
+        text: "Situación Legal",
+        path: "/home/documentacion/situacion-legal",
+        data: { permissions: [PERMISSIONS.catalogs_view_situacionlegal] },
+      },
+    ],
+  },
+  {
+    text: "Calidad",
+    icon: "star",
+    items: [
+      {
+        text: "Calidad de Construcción",
+        path: "/home/calidad/calidad-construccion",
+        data: { permissions: [PERMISSIONS.catalogs_view_calidadconstruccion] },
+      },
+      {
+        text: "Estado de Conservación",
+        path: "/home/calidad/estado-conservacion",
+        data: { permissions: [PERMISSIONS.catalogs_view_estadoconservacion] },
+      },
+      {
+        text: "Tipo de Acabado",
+        path: "/home/calidad/tipo-acabado",
+        data: { permissions: [PERMISSIONS.catalogs_view_tipoacabado] },
+      },
+      {
+        text: "Mantenimiento",
+        path: "/home/calidad/mantenimiento",
+        data: { permissions: [PERMISSIONS.catalogs_view_mantenimiento] },
+      },
+      {
+        text: "Equipamiento",
+        path: "/home/calidad/equipamiento",
+        data: { permissions: [PERMISSIONS.catalogs_view_equipamiento] },
       },
     ],
   },
@@ -88,7 +129,7 @@ export const navigation = [
     icon: "comment",
     items: [
       {
-        text: "Lista de Testimonios",
+        text: "Listado",
         path: "/home/testimonios",
         data: {
           permissions: [PERMISSIONS.testimonials_view_testimonio],
@@ -114,30 +155,10 @@ export const navigation = [
     icon: "photo",
     items: [
       {
-        text: "Lista de Casos de Éxito",
+        text: "Listado",
         path: "/home/casos-exito",
         data: {
           permissions: [PERMISSIONS.casos_exito_view_casoexito],
-        },
-      },
-    ],
-  },
-  {
-    text: "Inventario",
-    icon: "folder",
-    items: [
-      {
-        text: "Almacen",
-        path: "/home/txn-documents",
-        data: {
-          permissions: [PERMISSIONS.inventory_view_ingress],
-        },
-      },
-      {
-        text: "Tecnicos",
-        path: "/home/drives",
-        data: {
-          permissions: [PERMISSIONS.inventory_view_ingress],
         },
       },
     ],

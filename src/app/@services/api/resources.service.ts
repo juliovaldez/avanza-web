@@ -1,4 +1,5 @@
 import { BaseResource, Resource } from "../api/resource";
+import CustomStore from "devextreme/data/custom_store";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import {
@@ -10,24 +11,18 @@ import {
   UnitConversion,
   Kit,
   TransactionType,
-  TxnDocument,
-  Transaction,
   User,
   Location,
-  MaterialByUser,
-  InventoryProfile,
-  FiberGoProfile,
-  OrbitRegistry,
-  FiberTask,
   Testimonio,
   CasoExito,
   ContactoConfig,
+  Estado,
+  Municipio,
+  CargaSepomex,
+  Catalogo,
+  Propiedad,
 } from "@models/index";
-import { map, Observable } from "rxjs";
-import { LoadResultObject } from "devextreme/common/data";
-import { OrbitSync } from "@models-dto/OrbitSync";
-import { TxnSnapshotDaily } from "@models/txnSnapshotDaily";
-import { TxnShapshot } from "@models-dto/TxnShapshot";
+import { map, Observable, lastValueFrom } from "rxjs";
 
 @Injectable({ providedIn: "root" })
 export class UserService extends Resource<User> {
@@ -42,117 +37,8 @@ export class UserFetcherService extends BaseResource {
     super(httpClient, "/user");
   }
 
-  private insertInventoryProfile(
-    user_id: number,
-    resource: any
-  ): Observable<InventoryProfile> {
-    return this.httpClient
-      .post<any>(`${this.endPoint}/${user_id}/inventory-profile/`, resource, {
-        headers: this.getHeaders(),
-      })
-      .pipe(
-        map((response) => {
-          return new InventoryProfile(response.data);
-        })
-      );
-  }
-  private updateInventoryProfile(user_id: number, resource: any) {
-    return this.httpClient
-      .put<any>(`${this.endPoint}/${user_id}/inventory-profile/`, resource, {
-        headers: this.getHeaders(),
-      })
-      .pipe(
-        map((response) => {
-          return new InventoryProfile(response.data);
-        })
-      );
-  }
-  getInventoryProfile(user_id: number) {
-    return this.httpClient
-      .get<any>(`${this.endPoint}/${user_id}/inventory-profile/`, {
-        headers: this.getHeaders(),
-      })
-      .pipe(
-        map((response) => {
-          return new InventoryProfile(response.data);
-        })
-      );
-  }
-  saveInventoryProfile(user_id: number = 0, resource: any) {
-    return resource.id
-      ? this.updateInventoryProfile(user_id, resource)
-      : this.insertInventoryProfile(user_id, resource);
-  }
-  getMaterialsByLocation(
-    user_id: number,
-    location_id: number = 0
-  ): Observable<LoadResultObject<MaterialByUser>> {
-    let params: HttpParams = new HttpParams();
-    if (location_id) {
-      params = params.set("location_id", location_id);
-    }
-    return this.httpClient
-      .get<any>(`${this.endPoint}/${user_id}/materials-by-location/`, {
-        params: params,
-        headers: this.getHeaders(),
-      })
-      .pipe(
-        map((response: any) => {
-          response.data = this.mapToModelArray(response.data, MaterialByUser);
-          response.totalCount = (response as any).count;
-          return response as LoadResultObject<MaterialByUser>;
-        })
-      );
-  }
 }
 
-@Injectable({ providedIn: "root" })
-export class InventoryProfileService extends Resource<InventoryProfile> {
-  constructor(httpClient: HttpClient) {
-    super(httpClient, "/inventory-profile", InventoryProfile);
-  }
-}
-@Injectable({ providedIn: "root" })
-export class InventoryProfileFetcherService extends BaseResource {
-  constructor(httpClient: HttpClient) {
-    super(httpClient, "/inventory-profile");
-  }
-  public executeDailySnapshot(resource: TxnShapshot): Observable<boolean> {
-    return this.httpClient
-      .post<any>(`${this.endPoint}/execute_daily_snapshot/`, resource, {
-        headers: this.getHeaders(),
-      })
-      .pipe(
-        map((response) => {
-          return response;
-        })
-      );
-  }
-}
-@Injectable({ providedIn: "root" })
-export class FiberGoProfileService extends Resource<FiberGoProfile> {
-  constructor(httpClient: HttpClient) {
-    super(httpClient, "/fibergo-profile", FiberGoProfile);
-  }
-}
-
-@Injectable({ providedIn: "root" })
-export class FiberGoProfileFetcherService extends BaseResource {
-  constructor(httpClient: HttpClient) {
-    super(httpClient, "/fibergo-profile");
-  }
-  public executeOrbit(resource: OrbitSync): Observable<boolean> {
-    return this.httpClient
-      .post<any>(`${this.endPoint}/execute_orbit/`, resource, {
-        headers: this.getHeaders(),
-      })
-      .pipe(
-        map((response) => {
-          return response;
-        })
-      );
-  }
-}
 @Injectable({ providedIn: "root" })
 export class GroupService extends Resource<Group> {
   constructor(httpClient: HttpClient) {
@@ -219,41 +105,6 @@ export class KitService extends Resource<Kit> {
 export class TransactionTypeService extends Resource<TransactionType> {
   constructor(httpClient: HttpClient) {
     super(httpClient, "/transaction-type", TransactionType);
-  }
-}
-
-@Injectable({ providedIn: "root" })
-export class TxnDocumentService extends Resource<TxnDocument> {
-  constructor(httpClient: HttpClient) {
-    super(httpClient, "/txn-document", TxnDocument);
-  }
-}
-
-@Injectable({ providedIn: "root" })
-export class TransactionService extends Resource<Transaction> {
-  constructor(httpClient: HttpClient) {
-    super(httpClient, "/transaction", Transaction);
-  }
-}
-
-@Injectable({ providedIn: "root" })
-export class OrbitRegistryService extends Resource<OrbitRegistry> {
-  constructor(httpClient: HttpClient) {
-    super(httpClient, "/orbit-registry", OrbitRegistry);
-  }
-}
-
-@Injectable({ providedIn: "root" })
-export class FiberTaskService extends Resource<FiberTask> {
-  constructor(httpClient: HttpClient) {
-    super(httpClient, "/fiber-task", FiberTask);
-  }
-}
-
-@Injectable({ providedIn: "root" })
-export class TxnSnaphotDailyChartService extends Resource<TxnSnapshotDaily> {
-  constructor(httpClient: HttpClient) {
-    super(httpClient, "/txn-snapshot-daily", TxnSnapshotDaily);
   }
 }
 
@@ -349,5 +200,188 @@ export class TestimonioFetcherService extends BaseResource {
     return this.httpClient
       .get<any>(`${this.endPoint}/public/`)
       .pipe(map((r) => (r.data as any[]).map((item) => new Testimonio(item))));
+  }
+}
+
+@Injectable({ providedIn: "root" })
+export class SepomexCargaService extends BaseResource {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/sepomex/carga");
+  }
+
+  public cargar(archivo: File): Observable<CargaSepomex> {
+    const fd = new FormData();
+    fd.append("archivo", archivo);
+    return this.httpClient
+      .post<any>(`${this.endPoint}/cargar/`, fd, { headers: this.getHeaders() })
+      .pipe(map((r) => new CargaSepomex(r.data)));
+  }
+
+  public ultimoEstado(): Observable<CargaSepomex | null> {
+    return this.httpClient
+      .get<any>(`${this.endPoint}/ultimo-estado/`, { headers: this.getHeaders() })
+      .pipe(map((r) => (r.data ? new CargaSepomex(r.data) : null)));
+  }
+}
+
+@Injectable({ providedIn: "root" })
+export class SepomexFetcherService extends BaseResource {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/sepomex");
+  }
+
+  public getEstados(): Observable<Estado[]> {
+    return this.httpClient
+      .get<any>(`${this.endPoint}/estado/?isLoadingAll=true`, { headers: this.getHeaders() })
+      .pipe(map((r) => (r.data as any[]).map((d) => new Estado(d))));
+  }
+
+  public getMunicipios(estadoId?: number): Observable<Municipio[]> {
+    let url = `${this.endPoint}/municipio/?isLoadingAll=true`;
+    if (estadoId) url += `&estado_id=${estadoId}`;
+    return this.httpClient
+      .get<any>(url, { headers: this.getHeaders() })
+      .pipe(map((r) => (r.data as any[]).map((d) => new Municipio(d))));
+  }
+
+  public getAsentamientosByCP(cp: string): Observable<any[]> {
+    return this.httpClient
+      .get<any>(`${this.endPoint}/asentamiento/?cp=${cp}&isLoadingAll=true`, {
+        headers: this.getHeaders(),
+      })
+      .pipe(map((r) => r.data ?? []));
+  }
+
+  public getAsentamientosByMunicipio(municipioId: number): Observable<any[]> {
+    return this.httpClient
+      .get<any>(`${this.endPoint}/asentamiento/?municipio_id=${municipioId}&isLoadingAll=true`, {
+        headers: this.getHeaders(),
+      })
+      .pipe(map((r) => r.data ?? []));
+  }
+
+  public getAsentamientosStore(
+    estadoId?: number | null,
+    municipioId?: number | null,
+    cp?: string
+  ) {
+    const base = `${this.endPoint}/asentamiento/`;
+    const http = this.httpClient;
+    const getH = () => this.getHeaders();
+
+    return {
+      key: "id",
+      load: (opts: any) => {
+        let params = new HttpParams();
+        const page = opts.skip ? Math.ceil(opts.skip / (opts.take ?? 20)) + 1 : 1;
+        params = params.set("page", page).set("page_size", opts.take ?? 20);
+        if (estadoId) params = params.set("estado_id", estadoId);
+        if (municipioId) params = params.set("municipio_id", municipioId);
+        if (cp) params = params.set("cp", cp);
+        return lastValueFrom(
+          http.get<any>(base, { params, headers: getH() }).pipe(
+            map((r) => ({ data: r.data, totalCount: r.totalCount }))
+          )
+        );
+      },
+    };
+  }
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Catálogos de Propiedad — servicio genérico
+// ────────────────────────────────────────────────────────────────────────────
+
+@Injectable({ providedIn: "root" })
+export class CatalogoService extends BaseResource {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/catalogs");
+  }
+
+  /**
+   * Devuelve un CustomStore para el tipo de catálogo indicado.
+   * Soporta load, insert, update y remove en el mismo endpoint.
+   */
+  getStore(tipo: string): CustomStore {
+    const url  = `${this.endPoint}/${tipo}/`;
+    const http = this.httpClient;
+    const svc  = this;
+
+    return new CustomStore({
+      key: "id",
+
+      load: () =>
+        lastValueFrom(
+          http
+            .get<any>(url, {
+              params: new HttpParams().set("isLoadingAll", "true"),
+              headers: svc.getHeaders(),
+            })
+            .pipe(map((r) => ({ data: r.data ?? [], totalCount: r.totalCount ?? 0 })))
+        ),
+
+      insert: (values: Partial<Catalogo>) =>
+        lastValueFrom(
+          http
+            .post<any>(url, values, { headers: svc.getHeaders() })
+            .pipe(map((r) => r.data))
+        ),
+
+      update: (key: number, values: Partial<Catalogo>) =>
+        lastValueFrom(
+          http
+            .patch<any>(`${url}${key}/`, values, { headers: svc.getHeaders() })
+            .pipe(map((r) => r.data))
+        ),
+
+      remove: (key: number) =>
+        lastValueFrom(
+          http
+            .delete<void>(`${url}${key}/`, { headers: svc.getHeaders() })
+            .pipe(map(() => undefined))
+        ),
+    });
+  }
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Propiedades
+// ────────────────────────────────────────────────────────────────────────────
+
+@Injectable({ providedIn: "root" })
+export class PropiedadService extends Resource<Propiedad> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/propiedades/propiedad", Propiedad);
+  }
+}
+
+@Injectable({ providedIn: "root" })
+export class PropiedadFetcherService extends BaseResource {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "/propiedades/propiedad");
+  }
+
+  getById(id: number): Observable<Propiedad> {
+    return this.httpClient
+      .get<any>(`${this.endPoint}/${id}/`, { headers: this.getHeaders() })
+      .pipe(map((r) => new Propiedad(r.data)));
+  }
+
+  create(data: Partial<Propiedad>): Observable<Propiedad> {
+    return this.httpClient
+      .post<any>(`${this.endPoint}/`, data, { headers: this.getHeaders() })
+      .pipe(map((r) => new Propiedad(r.data)));
+  }
+
+  update(id: number, data: Partial<Propiedad>): Observable<Propiedad> {
+    return this.httpClient
+      .patch<any>(`${this.endPoint}/${id}/`, data, { headers: this.getHeaders() })
+      .pipe(map((r) => new Propiedad(r.data)));
+  }
+
+  delete(id: number): Observable<void> {
+    return this.httpClient
+      .delete<void>(`${this.endPoint}/${id}/`, { headers: this.getHeaders() })
+      .pipe(map(() => undefined));
   }
 }

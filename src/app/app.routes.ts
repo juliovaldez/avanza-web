@@ -84,6 +84,95 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./@components').then((m) => m.ContactoAdminComponent),
       },
+      {
+        path: 'sepomex',
+        title: 'Actualización SEPOMEX',
+        loadComponent: () =>
+          import('./@components').then((m) => m.SepomexComponent),
+      },
+      // ── Propiedades ──────────────────────────────────────────────────
+      {
+        path: 'propiedades',
+        title: 'Propiedades',
+        loadComponent: () => import('./@components').then((m) => m.ListPropiedadesComponent),
+      },
+      {
+        path: 'propiedades/nueva',
+        title: 'Nueva Propiedad',
+        loadComponent: () => import('./@components').then((m) => m.FormPropiedadComponent),
+      },
+      {
+        path: 'propiedades/:id/editar',
+        title: 'Editar Propiedad',
+        loadComponent: () => import('./@components').then((m) => m.FormPropiedadComponent),
+      },
+      // ── Catálogos ────────────────────────────────────────────────────
+      {
+        path: 'catalogo/tipo-propiedad',
+        title: 'Tipos de Propiedad',
+        loadComponent: () => import('./@components').then((m) => m.CatalogoAdminComponent),
+        data: { titulo: 'Tipos de Propiedad', tipo: 'tipo-propiedad' },
+      },
+      {
+        path: 'calidad/calidad-construccion',
+        title: 'Calidad de Construcción',
+        loadComponent: () => import('./@components').then((m) => m.CatalogoAdminComponent),
+        data: { titulo: 'Calidad de Construcción', tipo: 'calidad-construccion' },
+      },
+      {
+        path: 'calidad/estado-conservacion',
+        title: 'Estado de Conservación',
+        loadComponent: () => import('./@components').then((m) => m.CatalogoAdminComponent),
+        data: { titulo: 'Estado de Conservación', tipo: 'estado-conservacion' },
+      },
+      {
+        path: 'calidad/tipo-acabado',
+        title: 'Tipo de Acabado',
+        loadComponent: () => import('./@components').then((m) => m.CatalogoAdminComponent),
+        data: { titulo: 'Tipo de Acabado', tipo: 'tipo-acabado' },
+      },
+      {
+        path: 'calidad/mantenimiento',
+        title: 'Mantenimiento',
+        loadComponent: () => import('./@components').then((m) => m.CatalogoAdminComponent),
+        data: { titulo: 'Mantenimiento', tipo: 'mantenimiento' },
+      },
+      {
+        path: 'calidad/equipamiento',
+        title: 'Equipamiento',
+        loadComponent: () => import('./@components').then((m) => m.CatalogoAdminComponent),
+        data: { titulo: 'Equipamiento', tipo: 'equipamiento' },
+      },
+      {
+        path: 'documentacion/documento-propiedad',
+        title: 'Documentos de la Propiedad',
+        loadComponent: () => import('./@components').then((m) => m.CatalogoAdminComponent),
+        data: { titulo: 'Documentos de la Propiedad', tipo: 'documento-propiedad' },
+      },
+      {
+        path: 'documentacion/predial',
+        title: 'Predial',
+        loadComponent: () => import('./@components').then((m) => m.CatalogoAdminComponent),
+        data: { titulo: 'Predial', tipo: 'predial' },
+      },
+      {
+        path: 'documentacion/servicios-corriente',
+        title: 'Servicios al Corriente',
+        loadComponent: () => import('./@components').then((m) => m.CatalogoAdminComponent),
+        data: { titulo: 'Servicios al Corriente', tipo: 'servicios-corriente' },
+      },
+      {
+        path: 'documentacion/gravamen',
+        title: 'Gravamen',
+        loadComponent: () => import('./@components').then((m) => m.CatalogoAdminComponent),
+        data: { titulo: 'Gravamen', tipo: 'gravamen' },
+      },
+      {
+        path: 'documentacion/situacion-legal',
+        title: 'Situación Legal',
+        loadComponent: () => import('./@components').then((m) => m.CatalogoAdminComponent),
+        data: { titulo: 'Situación Legal', tipo: 'situacion-legal' },
+      },
     ],
   },
   // Auth

@@ -1,0 +1,70 @@
+<div class="catalogo">
+  <h2 class="catalogo__title">{{ titulo }}</h2>
+  <p *ngIf="subtitulo" class="catalogo__subtitle">{{ subtitulo }}</p>
+
+  <dx-data-grid
+    [dataSource]="dataSource"
+    [showBorders]="true"
+    [rowAlternationEnabled]="true"
+    [allowColumnResizing]="false"
+    [wordWrapEnabled]="false"
+    [columnAutoWidth]="false"
+    (onToolbarPreparing)="onToolbarPreparing($event)"
+    class="catalogo__grid">
+
+    <!-- Editing -->
+    <dxo-editing
+      mode="row"
+      [allowAdding]="false"
+      [allowUpdating]="true"
+      [allowDeleting]="true"
+      [useIcons]="true">
+      <dxo-texts
+        confirmDeleteMessage="¿Deseas eliminar este registro?"
+        confirmDeleteTitle="Confirmar eliminación"
+        editRow="Editar"
+        saveRowChanges="Guardar"
+        cancelRowChanges="Cancelar"
+        deleteRow="Eliminar">
+      </dxo-texts>
+    </dxo-editing>
+
+    <!-- Paginación -->
+    <dxo-paging  [pageSize]="20"></dxo-paging>
+    <dxo-pager  [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 50]" [showInfo]="true"></dxo-pager>
+
+    <!-- Columnas -->
+    <dxi-column
+      dataField="nombre"
+      caption="Nombre"
+      [minWidth]="220"
+      sortOrder="asc">
+      <dxi-validation-rule type="required" message="El nombre es requerido"></dxi-validation-rule>
+      <dxi-validation-rule type="stringLength" [max]="150" message="Máximo 150 caracteres"></dxi-validation-rule>
+    </dxi-column>
+
+    <dxi-column
+      dataField="orden"
+      caption="Orden"
+      dataType="number"
+      [width]="100"
+      alignment="center">
+      <dxi-validation-rule type="numeric" message="Debe ser un número"></dxi-validation-rule>
+    </dxi-column>
+
+    <dxi-column
+      dataField="activo"
+      caption="Activo"
+      dataType="boolean"
+      [width]="100"
+      alignment="center">
+    </dxi-column>
+
+    <!-- Columna de acciones siempre al final -->
+    <dxi-column type="buttons" [width]="110" alignment="center">
+      <dxi-button name="edit"></dxi-button>
+      <dxi-button name="delete"></dxi-button>
+    </dxi-column>
+
+  </dx-data-grid>
+</div>

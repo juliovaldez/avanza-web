@@ -1,0 +1,36 @@
+<div class="list-propiedades">
+  <h2 class="list-propiedades__title">Propiedades</h2>
+
+  <dx-data-grid
+    [dataSource]="dataSource"
+    [showBorders]="true"
+    [rowAlternationEnabled]="true"
+    [allowColumnResizing]="true"
+    [wordWrapEnabled]="false"
+    [remoteOperations]="{ paging: true, sorting: true }"
+    (onToolbarPreparing)="onToolbarPreparing($event)"
+    class="list-propiedades__grid">
+
+    <dxo-paging  [pageSize]="20"></dxo-paging>
+    <dxo-pager  [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 50]" [showInfo]="true"></dxo-pager>
+
+    <!-- Columnas clave -->
+    <dxi-column dataField="tipo_propiedad_nombre"      caption="Tipo"              [width]="140"></dxi-column>
+    <dxi-column dataField="precio"                     caption="Precio"            [width]="130" dataType="number" [format]="precioFormat" alignment="right"></dxi-column>
+    <dxi-column dataField="metros_construccion"        caption="Construcción (m²)" [width]="140" dataType="number"></dxi-column>
+    <dxi-column dataField="metros_terreno"             caption="Terreno (m²)"      [width]="120" dataType="number"></dxi-column>
+    <dxi-column dataField="habitaciones"               caption="Hab."              [width]="70"  dataType="number" alignment="center"></dxi-column>
+    <dxi-column dataField="banos"                      caption="Baños"             [width]="70"  dataType="number" alignment="center"></dxi-column>
+    <dxi-column dataField="cochera"                    caption="Coch."             [width]="70"  dataType="number" alignment="center"></dxi-column>
+    <dxi-column dataField="calidad_construccion_nombre" caption="Calidad"          [width]="110"></dxi-column>
+    <dxi-column dataField="estado_conservacion_nombre"  caption="Conservación"     [width]="120"></dxi-column>
+    <dxi-column dataField="gravamen_nombre"             caption="Gravamen"         [width]="140"></dxi-column>
+
+    <!-- Acciones -->
+    <dxi-column type="buttons" [width]="90" alignment="center" caption="">
+      <dxi-button icon="edit"  hint="Editar"   [onClick]="onEditar"></dxi-button>
+      <dxi-button icon="trash" hint="Eliminar" [onClick]="onEliminar" cssClass="btn-danger"></dxi-button>
+    </dxi-column>
+
+  </dx-data-grid>
+</div>

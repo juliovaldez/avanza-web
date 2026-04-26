@@ -1,0 +1,18 @@
+.list-propiedades {
+  padding: 24px;
+
+  &__title {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0 0 20px;
+  }
+
+  &__grid {
+    height: calc(100vh - 160px);
+  }
+}
+
+// Botón eliminar en rojo
+::ng-deep .btn-danger .dx-icon {
+  color: #d9363e;
+}

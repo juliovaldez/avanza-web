@@ -15,3 +15,7 @@ export * from "./casos-exito-admin/casos-exito-admin.component";
 export * from "./casos-exito-admin/list-casos-exito/list-casos-exito.component";
 export * from "./casos-exito-admin/form-caso-exito/form-caso-exito.component";
 export * from "./contacto-admin/contacto-admin.component";
+export * from "./sepomex/sepomex.component";
+export * from "./catalogo-admin/catalogo-admin.component";
+export * from "./propiedades/form-propiedad/form-propiedad.component";
+export * from "./propiedades/list-propiedades/list-propiedades.component";
