@@ -8,11 +8,12 @@ import {
   LocalstorageService,
   SpinnerService,
 } from "@services/core";
+import { DxButtonModule } from "devextreme-angular";
 
 @Component({
   selector: "app-login-form",
   standalone: true,
-  imports: [CommonModule, RouterModule, DxFormModule, DxLoadIndicatorModule],
+  imports: [CommonModule, RouterModule, DxFormModule, DxLoadIndicatorModule, DxButtonModule],
   templateUrl: "./login-form.component.html",
   styleUrls: ["./login-form.component.scss"],
 })
@@ -41,4 +42,9 @@ export class LoginFormComponent {
   onCreateAccountClick = () => {
     this.router.navigate(["/create-account"]);
   };
+
+  loginWithGoogle(): void {
+    // Redirige al usuario a Google — el backend nunca es llamado aquí
+    window.location.href = this.authService.buildGoogleAuthUrl();
+  }
 }

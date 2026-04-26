@@ -11,4 +11,7 @@
 
 export const environment = {
   ApiUrl: "http://localhost:8001/api",
+  // Solo el client_id — el client_secret NUNCA va al frontend
+  googleClientId:   "579430784454-f072nkrq0cleqbm6he8ibk0rs338f7qf.apps.googleusercontent.com",
+  googleRedirectUri: "http://localhost:4200/auth/google/callback",
 };

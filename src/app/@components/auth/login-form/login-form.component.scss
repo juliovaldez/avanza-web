@@ -2,6 +2,51 @@
 @use "variables.base" as *;
 
 .login-form {
+  .login-separator {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+    color: #999;
+    font-size: 13px;
+
+    &::before,
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #ddd;
+    }
+    span { padding: 0 10px; }
+  }
+
+  .google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    background: #fff;
+    color: #3c4043;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, box-shadow 0.15s;
+
+    &:hover {
+      background: #f8f9fa;
+      box-shadow: 0 1px 3px rgba(0,0,0,.15);
+    }
+
+    &__icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+  }
+
   .link {
     text-align: center;
     font-size: 16px;

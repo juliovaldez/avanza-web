@@ -197,5 +197,11 @@ export const routes: Routes = [
       import('@components/auth').then((m) => m.ChangePasswordFormComponent),
     canActivate: [AuthGuardService],
   },
+  {
+    path: 'auth/google/callback',
+    title: 'Google Login',
+    loadComponent: () =>
+      import('@components/auth').then((m) => m.GoogleCallbackComponent),
+  },
   { path: '**', redirectTo: '' },
 ];
