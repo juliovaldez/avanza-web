@@ -94,7 +94,7 @@ export class GoogleCallbackComponent implements OnInit {
     this.authService.googleLogin(code).subscribe({
       next: (response) => {
         this.localStorage.setToken(response.data.token);
-        this.router.navigate(["/"]);
+        this.router.navigate(["/home"]);
       },
       error: (err) => {
         const msg = err?.error?.detail || "Error al autenticar con Google.";

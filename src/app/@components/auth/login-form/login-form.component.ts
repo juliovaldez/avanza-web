@@ -31,7 +31,7 @@ export class LoginFormComponent {
     this.authService.login(this.formData).subscribe({
       next: (response) => {
         this.localstorageService.setToken(response.token);
-        this.router.navigate(["/"]);
+        this.router.navigate(["/home"]);
       },
       error: (error) => {
         console.log(error);
